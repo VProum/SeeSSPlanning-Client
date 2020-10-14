@@ -1,5 +1,9 @@
 import axios from "axios";
 
+// var passport       = require("passport");
+// const refresh = require("passport-oauth2-refresh");
+// var twitchStrategy = require("passport-twitch").Strategy;
+
 const service = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   withCredentials: true, // Cookie is sent to client when using this service. (used for session)
@@ -50,4 +54,9 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+testPouet(){
+  return service.get("https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=http://localhost:8080&response_type=token&scope=user:read:email").then(apires => console.log(apires));
+}
+
 };

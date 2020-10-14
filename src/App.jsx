@@ -6,10 +6,23 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import apiHandler from "../src/api/apiHandler";
+
 
 function App() {
+
+
+function handlePouet() {
+  apiHandler.testPouet();
+  
+}
+
+
   return (
     <div className="App">
+
+    <button onClick={handlePouet}>Test Twitch</button>
+
       <NavMain />
       <Switch>
         <Route exact path="/" component={Home} />
