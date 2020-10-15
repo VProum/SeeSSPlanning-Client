@@ -18,3 +18,7 @@ a {
 ul {
   list-style-type: none;
 }
+
+.margin-left {
+  margin-left: 2%;
+} 
