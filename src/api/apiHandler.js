@@ -36,14 +36,14 @@ export default {
 
   isLoggedIn() {
     return service
-      .get("/api/auth/isLoggedIn")
+      .get("/auth/isLoggedIn")
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   logout() {
     return service
-      .get("/api/auth/logout")
+      .get("/auth/logout")
       .then((res) => res.data)
       .catch(errorHandler);
   },
