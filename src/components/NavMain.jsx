@@ -62,6 +62,9 @@ const NavMain = (props) => {
 
   };
 
+function handleLogout(){
+  apiHandler.logout();
+}
 
   
 
@@ -81,6 +84,7 @@ const NavMain = (props) => {
             News
           </Typography>
           <Button color="inherit" onClick={handleLogin}>Login</Button>
+          <Button color="inherit" onClick={handleLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
     {/* </MuiThemeProvider > */}

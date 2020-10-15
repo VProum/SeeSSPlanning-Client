@@ -39,14 +39,14 @@ export default {
 
     isLoggedIn() {
         return service
-            .get("/api/auth/isLoggedIn")
+            .get("/auth/isLoggedIn")
             .then((res) => res.data)
             .catch(errorHandler);
     },
 
     logout() {
         return service
-            .get("/api/auth/logout")
+            .get("/auth/logout")
             .then((res) => res.data)
             .catch(errorHandler);
     },
@@ -61,4 +61,5 @@ export default {
     testPouet() {
         return service.get("https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=http://localhost:8080&response_type=token&scope=user:read:email").then(apires => console.log(apires));
     }
+
 };
