@@ -3,11 +3,9 @@ import FilterBar from "../components/FilterBar";
 import StreamerCard from "../components/StreamerCard";
 
 import { makeStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import apiHandler from "../api/apiHandler"
+import apiHandler from "../api/apiHandler";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,36 +23,43 @@ const useStyles = makeStyles((theme) => ({
 export default class AddStreamer extends Component {
   constructor(props) {
     super(props);
+
+    this.ClickHandler = this.ClickHandler.bind(this)
   }
 
   state = {
     filterValue: "",
-    streamer_list: []
+    streamer_list: [],
   };
 
   async componentDidMount() {
     const donotmutate = await apiHandler.getStreamer();
+    console.log("addstreamer did mount");
     this.setState({
-        streamer_list: donotmutate
-    })
+      streamer_list: donotmutate,
+    });
+  }
+
+  async ClickHandler(event) {
+    //console.log(event.currentTarget.id);
+    //await apiHandler.addFollowSteamer();
+    this.props.addStreamer(this.state.streamer_list[event.currentTarget.id]);
+    //todo add to db
   }
 
   render() {
     const classes = this.props;
     return (
       <div className={classes.root}>
-        <FilterBar></FilterBar>
-        <div style={{ display: "grid",
-    width: "30%" }}>
-          <GridListTile key={0}>
-            <img src="https://static-cdn.jtvnw.net/user-default-pictures-uv/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-300x300.png"></img>
-            <GridListTileBar title={"toto "} />
-          </GridListTile>
-
-          
+        <FilterBar />
+        <div style={{ display: "grid", width: "30%" }}>
+          {this.state.streamer_list.map((item, i) => (
+            <GridListTile key={item._id} id={i} onClick={this.ClickHandler}>
+              <img src={item.avatar} alt="blur"></img>
+              <GridListTileBar title={item.nickname} />
+            </GridListTile>
+          ))}
         </div>
-
-        <StreamerCard></StreamerCard>
       </div>
     );
   }

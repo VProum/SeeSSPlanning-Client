@@ -67,5 +67,19 @@ export default {
             .get("/user/streamer")
             .then((res) => res.data)
             .catch(errorHandler);
+    },
+
+    getUserFollow() {
+        return service
+            .get("/user/follow")
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
+
+    populateStreamer(id) {
+        return service
+            .get("/user/streamer/" + id)
+            .then((res) => res.data)
+            .catch(errorHandler);
     }
 };
