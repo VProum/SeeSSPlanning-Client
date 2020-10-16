@@ -19,6 +19,9 @@ import Select from "@material-ui/core/Select";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 
+import apiHandler from "../../api/apiHandler";
+
+
 const useStyles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -66,13 +69,16 @@ class EditSchedule extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
+    apiHandler.createScheduleOne(this.state)
+    .then()
+    .catch((err) => {
+      console.log(err)
+    })
 
     this.props.addSchedule(this.state);
-
   };
 
   handleSelectChange = (e) => {
-    
     this.setState({
         weekday: e.target.value
     })

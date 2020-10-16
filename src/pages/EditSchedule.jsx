@@ -1,30 +1,33 @@
-import React, { Component } from 'react'
-import FormEditSchedule from '../components/Forms/FormEditSchedule'
+import React, { Component } from "react";
+import FormEditSchedule from "../components/Forms/FormEditSchedule";
 import { withUser } from "../components/Auth/withUser";
 
-
 class EditSchedule extends Component {
-    state = {
-     hourDay: null,
-     duration: 3,
-     weekday: "",
+  state = {
+    hourDay: null,
+    duration: 3,
+    weekday: "",
+  };
+
+  handleAdd = (schedule) => {
+    for (let key in schedule) {   
+      this.setState({
+        [key]: schedule[key],
+      });
     }
+  };
 
-    handleAdd = (schedule) => {
-        console.log("Schedule ", schedule);
-        // this.setState({
+  render() {
 
-        // });
-    };
+    console.log(this.state);
 
-    render() {
-        return (
-            <div>
-                <h1>POUE POTER</h1>
-                <FormEditSchedule addSchedule={this.handleAdd}/>
-            </div>
-        )
-    }
+    return (
+      <div>
+        <h1>POUE POTER</h1>
+        <FormEditSchedule addSchedule={this.handleAdd} />
+      </div>
+    );
+  }
 }
 
 export default withUser(EditSchedule);
