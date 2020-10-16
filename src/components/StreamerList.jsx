@@ -12,8 +12,9 @@ const StreamerList = (props) => {
   }
   return (
     <div>
+        <h1>Streamers you follow</h1>
       {props.userList.map((item, i) => (
-        <GridListTile key={item._id} id={item._id} onClick={ClickHandler}>
+        <GridListTile key={i} id={i} onClick={ClickHandler}>
           <img src={item.avatar} alt="blur"></img>
           <GridListTileBar title={item.nickname} />
         </GridListTile>
