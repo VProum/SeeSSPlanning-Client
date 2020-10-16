@@ -24,7 +24,7 @@ export default class AddStreamer extends Component {
   constructor(props) {
     super(props);
 
-    this.ClickHandler = this.ClickHandler.bind(this)
+    this.ClickHandler = this.ClickHandler.bind(this);
   }
 
   state = {
@@ -41,10 +41,12 @@ export default class AddStreamer extends Component {
   }
 
   async ClickHandler(event) {
-    //console.log(event.currentTarget.id);
-    //await apiHandler.addFollowSteamer();
-    this.props.addStreamer(this.state.streamer_list[event.currentTarget.id]);
-    //todo add to db
+    let indispensable = this.state.streamer_list[event.currentTarget.id];
+    console.log("indispensable", indispensable)
+    if (this.props.userList.filter(function(item){ return item._id === indispensable._id }).length === 0) {
+      const dbResult = await apiHandler.addFollowStreamer(indispensable._id);
+      this.props.addStreamer(indispensable);
+    }
   }
 
   render() {

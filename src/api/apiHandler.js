@@ -83,6 +83,13 @@ export default {
             .catch(errorHandler);
     },
 
+    addFollowStreamer(id) {
+        return service
+            .post("/user/streamer/" + id)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
+
     createScheduleOne(data) {
         return service.post("/schedule/create", data);
     }
