@@ -11,6 +11,12 @@ const useStyles = (theme) => ({
 });
 
 class FilterBar extends Component {
+
+  handleChange = (e) => {
+    this.props.filterSearch(e.currentTarget.value);
+  }
+
+
   render() {
     const { classes } = this.props;
     return (
@@ -21,7 +27,7 @@ class FilterBar extends Component {
               <AccountCircle />
             </Grid>
             <Grid item>
-              <TextField id="input-with-icon-grid" label="Find a streamer" />
+              <TextField id="input-with-icon-grid" label="Find a streamer" style={{width: "33vw"}} onChange={this.handleChange}/>
             </Grid>
           </Grid>
         </div>

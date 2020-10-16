@@ -141,15 +141,13 @@ class EditSchedule extends React.Component {
 
     return (
       <div className={`${classes.root} margin-left`}>
-        <Grid container spacing={3} style={{ marginTop: "1%" }}>
-          <Grid item xs={6}>
             Add a stream in schedule
             <br />
             <form className={classes.root} onSubmit={this.handleSubmit}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="flex-start">
                   <KeyboardTimePicker
-                    id="hour_day"
+                    i ="hour_day"
                     name="hour_day"
                     label="Start Hour"
                     value={this.state.hour_day}
@@ -158,12 +156,6 @@ class EditSchedule extends React.Component {
                   />
                 </Grid>
               </MuiPickersUtilsProvider>
-{/* 
-              <FormPicker name="hourDay" 
-              defaultvalue={this.state.hourDay}
-               value={Date}
-               onChange={this.handleDateChange}
-               >Start Hour</FormPicker>  */}
 
               <br />
 
@@ -233,11 +225,7 @@ class EditSchedule extends React.Component {
 
               {/* <Field name="lastName" value={this.state.lastName}>LastName</Field> */}
             </form>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>xs=6</Paper>
-          </Grid>
-        </Grid>
+         
       </div>
     );
   }

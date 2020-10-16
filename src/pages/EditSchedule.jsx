@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import FormEditSchedule from "../components/Forms/FormEditSchedule";
+import UserContext from "../components/Auth/UserContext";
 import { withUser } from "../components/Auth/withUser";
+import "../styles/EditSchedule.css";
+import FormDisplayStreamer from "../components/Forms/FormDisplayStreamer";
 
 class EditSchedule extends Component {
+  static contextType = UserContext;
+
   state = {
     hour_day: null,
     duration: 3,
@@ -10,7 +15,7 @@ class EditSchedule extends Component {
   };
 
   handleAdd = (schedule) => {
-    for (let key in schedule) {   
+    for (let key in schedule) {
       this.setState({
         [key]: schedule[key],
       });
@@ -18,13 +23,18 @@ class EditSchedule extends Component {
   };
 
   render() {
+    const { user } = this.props.context;
 
-    console.log(this.state);
+    if (!user) return <div>Loading...</div>;
 
+    console.log("User id :", user[0]._id, "user :", user[0]);
     return (
       <div>
-        <h1>POUE POTER</h1>
-        <FormEditSchedule addSchedule={this.handleAdd} />
+        <h1>Schedule your stream</h1>
+        <div className="edit-schedule-container">
+          <FormEditSchedule addSchedule={this.handleAdd} />
+          <FormDisplayStreamer />
+        </div>
       </div>
     );
   }
