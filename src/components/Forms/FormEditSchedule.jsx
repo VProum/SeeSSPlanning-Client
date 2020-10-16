@@ -43,7 +43,7 @@ const useStyles = (theme) => ({
 
 class EditSchedule extends React.Component {
   state = {
-    hourDay: null,
+    hour_day: null,
     duration: 3,
     weekday: "",
   };
@@ -56,7 +56,7 @@ class EditSchedule extends React.Component {
 
   handleDateChange = (date) => {
     this.setState({
-      hourDay: date,
+      hour_day: date,
     });
   };
 
@@ -149,10 +149,10 @@ class EditSchedule extends React.Component {
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="flex-start">
                   <KeyboardTimePicker
-                    id="hourDay"
-                    name="hourDay"
+                    id="hour_day"
+                    name="hour_day"
                     label="Start Hour"
-                    value={this.state.hourDay}
+                    value={this.state.hour_day}
                     onChange={this.handleDateChange}
                     KeyboardButtonProps={{ "aria-label": "change time" }}
                   />

@@ -4,7 +4,7 @@ import { withUser } from "../components/Auth/withUser";
 
 class EditSchedule extends Component {
   state = {
-    hourDay: null,
+    hour_day: null,
     duration: 3,
     weekday: "",
   };
