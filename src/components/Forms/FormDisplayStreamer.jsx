@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import FilterBar from "../FilterBar";
-import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
 import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = (theme) => ({

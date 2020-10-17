@@ -8,8 +8,8 @@ class StreamerDetail extends Component {
     static contextType = UserContext;
     render() {
         const { user } = this.props.context;
-        if (!user) return <div>Loading...</div>;
-        console.log("context", user);
+        //console.log("context", user);
+        if (!user || user.length === 0) return <div>Loading...</div>;
         return (
             <div className="horizontal">
                 <img src={user[0].avatar} alt="blur"/>
