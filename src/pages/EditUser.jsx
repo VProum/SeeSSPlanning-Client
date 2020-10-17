@@ -17,7 +17,7 @@ export default class EditUser extends Component {
 
   async componentDidMount() {
     const donotmutate = await apiHandler.getUserFollow();
-    console.log("EditUser did mount", donotmutate);
+    //console.log("EditUser did mount", donotmutate);
     this.setState({
       streamer_follow: donotmutate, //to change
     });

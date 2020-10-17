@@ -8,6 +8,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import EditUser from "./pages/EditUser"
 import EditSchedule from "./pages/EditSchedule";
+import Planning from "./pages/Planning"
+import 'semantic-ui-css/semantic.min.css'
 
 class App extends React.Component {
 
@@ -21,6 +23,7 @@ class App extends React.Component {
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/signup" component={Signup} />
           <ProtectedRoute exact path="/profile" component={Profile} />
+          <Route exact path="/planning" component={Planning} />
           <Route exact path="/user/edit" component={EditUser} />
           <Route path="/schedule/edit" component={EditSchedule} />
         </Switch>
