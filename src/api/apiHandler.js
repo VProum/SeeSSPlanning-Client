@@ -69,6 +69,14 @@ export default {
             .catch(errorHandler);
     },
 
+    getFilteredStreamer(data) {
+        return service
+        .get("/user/streamer/search/" + data)
+        //.then(res => res.data)
+        .then(res => res.data)
+        .catch(errorHandler);
+    },
+
     getUserFollow() {
         return service
             .get("/user/follow")
@@ -97,9 +105,14 @@ export default {
             .catch(errorHandler);
     },
 
+
+    ///// Schedule part
+
     createScheduleOne(data) {
         return service.post("/schedule/create", data);
     }
 
+    
+    
 
 };

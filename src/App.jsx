@@ -14,7 +14,7 @@ import 'semantic-ui-css/semantic.min.css'
 class App extends React.Component {
 
    render() {
-    console.log(process.env);
+   // console.log(process.env);
     return (
       <div className="App">
         <NavMain />
