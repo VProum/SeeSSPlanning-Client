@@ -1,0 +1,24 @@
+.line-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    width: 70%;
+    height: 6vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px red solid;
+}
+
+.header {
+    height: 30%;
+    background: red;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}
+
+.container {
+    padding: 2px 16px;
+}

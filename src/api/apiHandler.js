@@ -110,9 +110,21 @@ export default {
 
     createScheduleOne(data) {
         return service.post("/schedule/create", data);
-    }
+    },
 
-    
-    
+    getSchedule() {
+        console.log("dans la bonne route");
+
+        return service.get("/schedule/get")
+        .then((res) => res.data)
+        .catch(errorHandler);
+    },
+
+
+    deleteScheduleOne(id){
+       
+        return service.delete("/schedule/delete/"+id);
+
+    }
 
 };

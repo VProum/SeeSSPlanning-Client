@@ -37,12 +37,11 @@ class FormDisplayStreamer extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log("lift the state up: ", this.state.streamerFiltered);
+   // console.log("lift the state up: ", this.state.streamerFiltered);
     
-    console.log("length: ", this.state.streamerFiltered.length);
     
     if(this.state.streamerFiltered.length > 0){
-      console.log(this.state.streamerFiltered, "<<< not empty streamer")
+   //   console.log(this.state.streamerFiltered, "<<< not empty streamer")
     
     }
     return (
