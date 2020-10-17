@@ -22,12 +22,12 @@ class EditSchedule extends Component {
     }
   };
 
+
   render() {
     const { user } = this.props.context;
 
     if (!user) return <div>Loading...</div>;
-
-    console.log("User id :", user[0]._id, "user :", user[0]);
+    
     return (
       <div>
         <h1>Schedule your stream</h1>

@@ -12,7 +12,7 @@ import EditSchedule from "./pages/EditSchedule";
 class App extends React.Component {
 
    render() {
-    console.log(process.env);
+   // console.log(process.env);
     return (
       <div className="App">
         <NavMain />
