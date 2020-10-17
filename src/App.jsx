@@ -1,12 +1,11 @@
 import React from "react";
-import { withRouter, Switch, Route, Redirect } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
 import NavMain from "./components/NavMain";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-import apiHandler from "../src/api/apiHandler";
 import EditUser from "./pages/EditUser"
 import EditSchedule from "./pages/EditSchedule";
 

@@ -90,6 +90,13 @@ export default {
             .catch(errorHandler);
     },
 
+    removeFollowStreamer(id) {
+        return service
+            .delete("/user/streamer/" + id)
+            .then((res) => res.data)
+            .catch(errorHandler);
+    },
+
     createScheduleOne(data) {
         return service.post("/schedule/create", data);
     }

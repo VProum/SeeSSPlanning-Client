@@ -7,10 +7,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+//import { createMuiTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const darkTheme = createMuiTheme({
-  palette: {
-    type: 'dark',
-  },
-});
+// const darkTheme = createMuiTheme({
+//   palette: {
+//     type: 'dark',
+//   },
+// });
 
 const NavMain = (props) => {
   const { context } = props;
@@ -54,19 +53,11 @@ const NavMain = (props) => {
 
     const uri = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_BACKEND_URL}/auth/twitch/callback&response_type=code&scope=user:read:email`;
     
-    
-    
     //"https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=http://localhost:8080/auth/twitch/callback&response_type=code&scope=user:read:email";
 
       window.location = uri;
 
   };
-
-function handleLogout(){
-  apiHandler.logout();
-}
-
-  
 
   return (
   
