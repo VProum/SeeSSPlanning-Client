@@ -12,9 +12,18 @@ const useStyles = (theme) => ({
 
 class FilterBar extends Component {
 
-  handleChange = (e) => {
-    this.props.filterSearch(e.currentTarget.value);
-  }
+  // handleChange = (e) => {
+  //   this.props.filterSearch(e.currentTarget.value);
+  // }
+
+
+
+  handleChange =() => {
+    console.log("titi");
+    clearTimeout(typing);
+    typing = setTimeout(() => clickHandler(), 500);
+}
+
 
 
   render() {
