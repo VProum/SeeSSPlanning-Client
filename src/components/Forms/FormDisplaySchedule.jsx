@@ -5,22 +5,20 @@ import "../../styles/FormDisplaySchedule.css";
 import { withStyles } from "@material-ui/core/styles";
 import apiHandler from "../../api/apiHandler";
 
-
 const useStyles = (theme) => ({
-    root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    '& > *': {
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    "& > *": {
       margin: theme.spacing(0.5),
     },
   },
 });
 
-
 class FormDisplaySchedule extends React.Component {
   state = {
-    schedule_list: [],
+    schedule_list: this.props.schedule_list,
   };
 
   handleScheduleFormat = (value) => {
@@ -41,43 +39,48 @@ class FormDisplaySchedule extends React.Component {
         }
       }
     });
-    console.log(formatPlanning);
+
+
+    
+
     return formatPlanning;
   };
 
   deleteElement = (value) => {
-    apiHandler.deleteScheduleOne(value);
+    apiHandler
+      .deleteScheduleOne(value)
+      .then((res) => this.props.deleteSchedule(res));
+  };
+
+  componentDidMount() {
+    this.setState({ schedule_list: this.props.schedule_list });
   }
-
-
 
   render() {
     let scheduleObj = this.handleScheduleFormat(this.props.schedule_list);
-
     return (
       <div style={{ marginTop: "7%" }}>
         <h1>Planning week</h1>
-        
-          <ul>
-            {Object.entries(scheduleObj).map(
-              ([weekDay, scheduleList], index) => (
-                <li key={index}   className="line-row">
-                  <div style={{width:"12vw"}}> pouet : {weekDay} </div>
-                  {scheduleList.map((schedule, i) => (
-                    <div className="card">
-                      <div key={i} className="header">
-                        {schedule.hour_day} || duration: {schedule.duration}h:00
-                      </div>
-                        <div className="container" onClick={()=>this.deleteElement(schedule._id)}>stuff to print</div>
-                        
-                    </div>
-                  ))}
-                </li>
-              )
-            )}
-          </ul>
-       
-      
+        <ul>
+          {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
+            <li key={index} className="line-row">
+              <div style={{ width: "12vw" }}>  <strong>{weekDay}</strong> </div>
+              {scheduleList.map((schedule, i) => (
+                <div className="card" key={i}>
+                  <div key={i} className="header">
+                    {schedule.hour_day} || duration: {schedule.duration}h:00
+                  </div>
+                  <div
+                    className="container"
+                    onClick={() => this.deleteElement(schedule._id)}
+                  >
+                    stuff to print
+                  </div>
+                </div>
+              ))}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

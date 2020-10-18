@@ -25,18 +25,21 @@ class EditSchedule extends Component {
     });
   }
 
-  handleAdd = (schedule) => {
-    for (let key in schedule) {
-      this.setState({
-        [key]: schedule[key],
-      });
-    }
+  handleAdd = (schedule) => { 
+    this.setState({
+      schedule_list:[...this.state.schedule_list, schedule] 
+    });
   };
+
+  handleDelete = (schedule) => {
+    this.setState({
+      schedule_list: schedule
+    })
+  }
 
   render() {
     const { user } = this.props.context;
-    //  console.log(this.state)
-
+    
     if (!user) return <div>Loading...</div>;
 
     return (
@@ -44,9 +47,10 @@ class EditSchedule extends Component {
         <h1>Schedule your stream</h1>
         <div className="edit-schedule-container">
           <FormEditSchedule addSchedule={this.handleAdd} />
+          {/* schedule_list={this.state.schedule_list} /> */}
           <FormDisplayStreamer />
           <div style={{width:"70vW"}}>
-            <FormDisplaySchedule schedule_list={this.state.schedule_list} />
+              <FormDisplaySchedule deleteSchedule={this.handleDelete} schedule_list={this.state.schedule_list} /> 
           </div>
         </div>
       </div>

@@ -21,7 +21,6 @@ constructor(props){
 
 state = {
     streamerFiltered: [],
-    test :true
   };
 
 
