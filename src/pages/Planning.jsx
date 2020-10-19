@@ -3,6 +3,8 @@ import apiHandler from "../api/apiHandler";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import { withStyles } from "@material-ui/core/styles";
+import FormDisplaySchedule from "../components/Forms/FormDisplaySchedule";
+
 import {
   Checkbox,
   Grid,
@@ -28,6 +30,8 @@ class Planning extends Component {
   constructor(props) {
     super(props);
 
+    
+    this.handlefFormatSchedule = this.handlefFormatSchedule.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -51,16 +55,38 @@ class Planning extends Component {
   }
 
   handleDelete(e) {
-    console.info("You clicked the delete icon.");
     let donotmutate = [...this.state.filterStreamer]
-    console.log(e.currentTarget.parentElement)
     donotmutate.splice(e.currentTarget.parentElement.id, 1)
     this.setState({
         filterStreamer: donotmutate
     })
   }
 
+  handleNothing = () => {
+   console.log("pouet");
+  }
+  
+  handlefFormatSchedule(){
+    let scheduleListAll = [];
+    let filterStreamerTmp = [...this.state.filterStreamer];
+
+    filterStreamerTmp.map((item, index) =>{
+      for (const prop in item){
+        if(prop === "planningList" && item[prop].length > 0) {
+          for (const titi in item[prop]){
+            scheduleListAll.push(item[prop][titi]);
+          }
+        }
+      }
+    })
+    console.log(scheduleListAll);
+    return scheduleListAll;
+  }
+
+
   render() {
+    this.handlefFormatSchedule();
+   
     return (
       <Grid columns={1}>
         <Grid.Column>
@@ -77,7 +103,7 @@ class Planning extends Component {
           />
 
           {this.state.filterStreamer.map((item, i) => (
-              <React.Fragment>
+              <React.Fragment key={i}>
               <Chip
                 avatar={<Avatar alt={item.nickname} src={item.avatar} />}
                 label={item.nickname}
@@ -138,10 +164,11 @@ class Planning extends Component {
             </Sidebar>
 
             <Sidebar.Pusher dimmed={this.state.dimmed}>
-              <Segment basic>
+              {/* <Segment basic>
                 <Header as="h3">Application Content</Header>
                 <Image src="https://static-cdn.jtvnw.net/jtv_user_pictures/9b1e0ea9-6dd0-40c1-b255-3f3cea8d1814-profile_image-300x300.png" />
-              </Segment>
+              </Segment> */}
+              <FormDisplaySchedule deleteSchedule={this.handleNothing} schedule_list={this.handlefFormatSchedule()} /> 
             </Sidebar.Pusher>
           </Sidebar.Pushable>
         </Grid.Column> 

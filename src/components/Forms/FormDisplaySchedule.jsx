@@ -1,7 +1,6 @@
 import React from "react";
 import { withUser } from "../Auth/withUser";
 import "../../styles/FormDisplaySchedule.css";
-
 import { withStyles } from "@material-ui/core/styles";
 import apiHandler from "../../api/apiHandler";
 
@@ -40,9 +39,7 @@ class FormDisplaySchedule extends React.Component {
       }
     });
 
-
     function compare(a, b) {
-   
       const hour1 = a.hour_day;
       const hour2 = b.hour_day;    
       let comparison = 0;
@@ -54,12 +51,9 @@ class FormDisplaySchedule extends React.Component {
       return comparison;
     }
 
-
       for(const prop in formatPlanning){
         formatPlanning[prop].sort(compare);
       }
-
-      console.log(formatPlanning);
 
     return formatPlanning;
   };

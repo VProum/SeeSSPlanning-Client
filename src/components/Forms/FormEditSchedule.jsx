@@ -15,8 +15,9 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
-
 import apiHandler from "../../api/apiHandler";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Icon from '@material-ui/core/Icon';
 
 
 const useStyles = (theme) => ({
@@ -43,8 +44,8 @@ class EditSchedule extends React.Component {
     hour_day: null,
     duration: 3,
     weekday: "",
-    
-  schedule_obj: {
+
+    schedule_obj: {
       hour_day: null,
       duration: 3,
       weekday: "",
@@ -52,10 +53,9 @@ class EditSchedule extends React.Component {
     schedule_list: [],
   };
 
-
   componentDidMount() {
     this.setState({
-      schedule_list : this.props.schedule_list
+      schedule_list: this.props.schedule_list,
     });
   }
 
@@ -66,38 +66,36 @@ class EditSchedule extends React.Component {
   };
 
   handleDateChange = (date) => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       hour_day: date,
-      schedule_obj:{ ...prevState.schedule_obj, hour_day: date,}
+      schedule_obj: { ...prevState.schedule_obj, hour_day: date },
     }));
   };
 
   valuetext = (event, value) => {
+    let tmp = value;
 
-   let tmp = value;
-
-this.setState(prevState => ({
-         duration: tmp,
-        schedule_obj:{ ...prevState.schedule_obj, duration: tmp,}
-     }))
+    this.setState((prevState) => ({
+      duration: tmp,
+      schedule_obj: { ...prevState.schedule_obj, duration: tmp },
+    }));
   };
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    apiHandler.createScheduleOne(this.state.schedule_obj)
-    .then( res => this.props.addSchedule(res)
-    )
-    .catch((err) => {
-      console.log(err)
-    })
-   
+    apiHandler
+      .createScheduleOne(this.state.schedule_obj)
+      .then((res) => this.props.addSchedule(res))
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   handleSelectChange = (e) => {
-    this.setState(prevState => ({
-        weekday: e.target.value,
-        schedule_obj:{ ...prevState.schedule_obj, weekday: e.target.value,}
-    }))
+    this.setState((prevState) => ({
+      weekday: e.target.value,
+      schedule_obj: { ...prevState.schedule_obj, weekday: e.target.value },
+    }));
   };
 
   render() {
@@ -154,47 +152,45 @@ this.setState(prevState => ({
       },
     ];
 
- // console.log(this.state.schedule_list, " type schedule_list in formEditSchedule");
+    // console.log(this.state.schedule_list, " type schedule_list in formEditSchedule");
     return (
       <div className={`${classes.root} margin-left`}>
-            Add a stream in schedule
-            <br />
-            <form className={classes.root} onSubmit={this.handleSubmit}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container justify="flex-start">
-                  <KeyboardTimePicker
-                    i ="hour_day"
-                    name="hour_day"
-                    label="Start Hour"
-                    value={this.state.hour_day}
-                    onChange={this.handleDateChange}
-                    KeyboardButtonProps={{ "aria-label": "change time" }}
-                  />
-                </Grid>
-              </MuiPickersUtilsProvider>
-
-              <br />
-
-              <Typography id="discrete-slider-always" gutterBottom>
-               Duration
-              </Typography>
-              <Slider
-                 id="duration"
-                name="duration"
-                
-              
-                aria-labelledby="discrete-slider-always"
-                step={1}
-                min={1}
-                max={12}
-                marks={marks}
-                valueLabelDisplay="on" 
-                value={this.state.duration}
-                onChange={this.valuetext}
+        Add a stream in schedule
+        <br />
+        <form className={classes.root} onSubmit={this.handleSubmit}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="flex-start">
+              <KeyboardTimePicker
+                i="hour_day"
+                name="hour_day"
+                label="Start Hour"
+                value={this.state.hour_day}
+                onChange={this.handleDateChange}
+                KeyboardButtonProps={{ "aria-label": "change time" }}
               />
+            </Grid>
+          </MuiPickersUtilsProvider>
 
-              <br />
-              {/* <TextField
+          <br />
+
+          <Typography id="discrete-slider-always" gutterBottom>
+            Duration
+          </Typography>
+          <Slider
+            id="duration"
+            name="duration"
+            aria-labelledby="discrete-slider-always"
+            step={1}
+            min={1}
+            max={12}
+            marks={marks}
+            valueLabelDisplay="on"
+            value={this.state.duration}
+            onChange={this.valuetext}
+          />
+
+          <br />
+          {/* <TextField
                 id="outlined-basic"
                 defaultValue="pouet"
                 name="tata"
@@ -203,45 +199,66 @@ this.setState(prevState => ({
                 onChange={this.handlechange}
               /> */}
 
-            <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="weekday">Weekdays</InputLabel>
+            <Select
+              labelId="weekday"
+              id="weekday"
+              name="weekday"
+              value={this.state.weekday}
+              onChange={this.handleSelectChange}
+            >
+              <MenuItem value="Monday">Monday</MenuItem>
+              <MenuItem value="Tuesday">Tuesday</MenuItem>
+              <MenuItem value="Wednesday">Wednesday</MenuItem>
+              <MenuItem value="Thursday">Thursday</MenuItem>
+              <MenuItem value="Friday">Friday</MenuItem>
+              <MenuItem value="Saturday">Saturday</MenuItem>
+              <MenuItem value="Sunday">Sunday</MenuItem>
+            </Select>
+            <br />
+          
+
+       <input
+        accept="image/*"
+        className={classes.input}
+        id="contained-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="contained-button-file">
+        <Button variant="contained" color="primary" component="span" className={classes.button}
+        startIcon={<CloudUploadIcon />}>
+          Upload
+        </Button>
+
       
-        <InputLabel id="weekday">Weekdays</InputLabel>
-        <Select
-          labelId="weekday"
-          id="weekday"
-          name="weekday"
-          value={this.state.weekday}
-          onChange={this.handleSelectChange}
-        >
-          <MenuItem value="Monday">Monday</MenuItem>
-          <MenuItem value="Tuesday">Tuesday</MenuItem>
-          <MenuItem value="Wednesday">Wednesday</MenuItem>
-          <MenuItem value="Thursday">Thursday</MenuItem>
-          <MenuItem value="Friday">Friday</MenuItem>
-          <MenuItem value="Saturday">Saturday</MenuItem>
-          <MenuItem value="Sunday">Sunday</MenuItem>
-        </Select>
-      </FormControl> 
 
-              <br />
-              {/* <FormInput name="lastName" value={this.state.lastName} onChange={this.handleTest}>lastName</FormInput> */}
-              
 
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-                startIcon={<SaveIcon />}
-                style={{ marginTop: "5%" }}
-                type="submit"
-              >
-                Save
-              </Button>
+      </label>
 
-              {/* <Field name="lastName" value={this.state.lastName}>LastName</Field> */}
-            </form>
-         
+
+
+
+          </FormControl>
+
+          <br />
+          {/* <FormInput name="lastName" value={this.state.lastName} onChange={this.handleTest}>lastName</FormInput> */}
+
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            startIcon={<SaveIcon />}
+            style={{ marginTop: "5%" }}
+            type="submit"
+          >
+            Save
+          </Button>
+
+          {/* <Field name="lastName" value={this.state.lastName}>LastName</Field> */}
+        </form>
       </div>
     );
   }
