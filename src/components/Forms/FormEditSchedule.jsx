@@ -44,11 +44,13 @@ class EditSchedule extends React.Component {
     hour_day: null,
     duration: 3,
     weekday: "",
+    image:"",
 
     schedule_obj: {
       hour_day: null,
       duration: 3,
       weekday: "",
+      image:"",
     },
     schedule_list: [],
   };
@@ -83,8 +85,17 @@ class EditSchedule extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
+    const fd = new FormData();
+
+    for (const key in this.state.schedule_obj) {
+        if(this.state.schedule_obj[key]){
+            fd.append(key, this.state.schedule_obj[key]);
+        }
+      
+    }
+
     apiHandler
-      .createScheduleOne(this.state.schedule_obj)
+      .createScheduleOne(fd)
       .then((res) => this.props.addSchedule(res))
       .catch((err) => {
         console.log(err);
@@ -98,9 +109,19 @@ class EditSchedule extends React.Component {
     }));
   };
 
+  handleImgChange = (e) => {
+    //const name = e.target.name;
+    const value =  e.target.files[0];
+   
+    this.setState((prevState) => ({ 
+      image: value,
+      schedule_obj: { ...prevState.schedule_obj, image: value },
+    }));
+  }
+
+
   render() {
     const { classes } = this.props;
-
     const marks = [
       {
         value: 1,
@@ -152,7 +173,6 @@ class EditSchedule extends React.Component {
       },
     ];
 
-    // console.log(this.state.schedule_list, " type schedule_list in formEditSchedule");
     return (
       <div className={`${classes.root} margin-left`}>
         Add a stream in schedule
@@ -190,15 +210,6 @@ class EditSchedule extends React.Component {
           />
 
           <br />
-          {/* <TextField
-                id="outlined-basic"
-                defaultValue="pouet"
-                name="tata"
-                label="tata"
-                variant="outlined"
-                onChange={this.handlechange}
-              /> */}
-
           <FormControl className={classes.formControl}>
             <InputLabel id="weekday">Weekdays</InputLabel>
             <Select
@@ -217,7 +228,6 @@ class EditSchedule extends React.Component {
               <MenuItem value="Sunday">Sunday</MenuItem>
             </Select>
             <br />
-          
 
        <input
         accept="image/*"
@@ -225,6 +235,8 @@ class EditSchedule extends React.Component {
         id="contained-button-file"
         multiple
         type="file"
+        name="image"
+        onChange={this.handleImgChange}
       />
       <label htmlFor="contained-button-file">
         <Button variant="contained" color="primary" component="span" className={classes.button}
@@ -232,13 +244,7 @@ class EditSchedule extends React.Component {
           Upload
         </Button>
 
-      
-
-
       </label>
-
-
-
 
           </FormControl>
 

@@ -79,7 +79,7 @@ class Planning extends Component {
         }
       }
     })
-    console.log(scheduleListAll);
+   
     return scheduleListAll;
   }
 
@@ -136,7 +136,7 @@ class Planning extends Component {
                   key={i}
                   index={i}
                   onClick={(e, data) => {
-                      console.log(e.currentTarget, data);
+                     
                       let donotmutate = [...this.state.filterStreamer];
                       donotmutate.push(this.state.followingStreamers[data.index]);
                     donotmutate = [...new Set(donotmutate)];
