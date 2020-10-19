@@ -22,7 +22,6 @@ async componentDidMount() {
     return (
       <div>
         <h1>Home Page ∆</h1>
-        <Hooks/>
         <StreamerList userList={this.state.allStreamers}/>
         
       </div>

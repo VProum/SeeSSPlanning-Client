@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import UserContext from "../components/Auth/UserContext";
 import { withUser } from "../components/Auth/withUser";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -9,7 +10,7 @@ class StreamerDetail extends Component {
     render() {
         const { user } = this.props.context;
         //console.log("context", user);
-        if (!user || user.length === 0) return <div>Loading...</div>;
+        if (!user || user.length === 0) return <CircularProgress />;
         return (
             <div className="horizontal">
                 <img src={user[0].avatar} alt="blur"/>

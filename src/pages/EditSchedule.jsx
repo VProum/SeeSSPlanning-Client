@@ -6,6 +6,7 @@ import "../styles/EditSchedule.css";
 import FormDisplayStreamer from "../components/Forms/FormDisplayStreamer";
 import apiHandler from "../api/apiHandler";
 import FormDisplaySchedule from "../components/Forms/FormDisplaySchedule";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class EditSchedule extends Component {
   static contextType = UserContext;
@@ -40,7 +41,7 @@ class EditSchedule extends Component {
   render() {
     const { user } = this.props.context;
     
-    if (!user) return <div>Loading...</div>;
+    if (!user) return <CircularProgress />;
 
     return (
       <div>

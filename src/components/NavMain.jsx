@@ -1,11 +1,13 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { NavLink } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@material-ui/icons/Home";
 
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
@@ -14,7 +16,7 @@ import apiHandler from "../api/apiHandler";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -38,6 +40,7 @@ const NavMain = (props) => {
       .logout()
       .then(() => {
         context.removeUser();
+        window.location = "http://localhost:3000";
       })
       .catch((error) => {
         console.log(error);
@@ -45,44 +48,56 @@ const NavMain = (props) => {
   }
   const classes = useStyles();
 
-
-
   function handleLogin() {
-
     console.log(process.env);
 
     const uri = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_BACKEND_URL}/auth/twitch/callback&response_type=code&scope=user:read:email`;
-    
+
     //"https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=http://localhost:8080/auth/twitch/callback&response_type=code&scope=user:read:email";
 
-      window.location = uri;
-
-  };
+    window.location = uri;
+  }
 
   return (
-  
-
-
-   <div className={classes.root}>
-
-    {/* <MuiThemeProvider theme={darkTheme}> */}
-      <AppBar position="sticky" style={{backgroundColor: "black"}}>
+    <div className={classes.root}>
+      {/* <MuiThemeProvider theme={darkTheme}> */}
+      <AppBar position="sticky" style={{ backgroundColor: "black" }}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <NavLink exact to="/">
+              <HomeIcon fontSize="large" />
+            </NavLink>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            <NavLink exact to="/planning">
+              <span style={{ marginRight: "5%" }}>Planning</span>
+            </NavLink>
+            <NavLink exact to="/schedule/edit">
+              <span style={{ marginRight: "5%" }}>Schedule</span>
+            </NavLink>
+            <NavLink exact to="/user/edit">
+              Streams
+            </NavLink>
           </Typography>
-          <Button color="inherit" onClick={handleLogin}>Login</Button>
-          <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          <NavLink exact to="/user/edit">
+              Contact
+          </NavLink>
+          <Button color="inherit" onClick={handleLogin}>
+            Login
+          </Button>
+          <Button color="inherit" onClick={handleLogout}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
-    {/* </MuiThemeProvider > */}
+      {/* </MuiThemeProvider > */}
     </div>
-
-
-   );
+  );
 };
 
 export default withUser(NavMain);
