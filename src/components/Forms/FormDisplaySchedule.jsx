@@ -3,6 +3,7 @@ import { withUser } from "../Auth/withUser";
 import "../../styles/FormDisplaySchedule.css";
 import { withStyles } from "@material-ui/core/styles";
 import apiHandler from "../../api/apiHandler";
+import { Link } from "react-router-dom";
 
 const useStyles = (theme) => ({
   root: {
@@ -54,7 +55,6 @@ class FormDisplaySchedule extends React.Component {
       for(const prop in formatPlanning){
         formatPlanning[prop].sort(compare);
       }
-console.log(formatPlanning, " <<<<<<<in formatPlanning");
     return formatPlanning;
   };
 
@@ -75,19 +75,36 @@ console.log(formatPlanning, " <<<<<<<in formatPlanning");
         <h1>Planning week</h1>
         <ul>
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
-            <li key={index} className="form-display-schedule line-row">
+
+
+            <li key={index} className="form-display-schedule-line-row" >
               <div style={{ width: "12vw" }}>  <strong>{weekDay}</strong> </div>
               {scheduleList.map((schedule, i) => (
-                <div className="form-display-schedule card" key={i}>
-                  <div key={i} className="form-display-schedule header">
-                   {schedule.streamer_name.toString()} || {schedule.hour_day} || duration: {schedule.duration}h:00
+                <div className="form-display-schedule-card" key={i}>
+            <Link  to={`/schedule/view/${schedule._id}`}>
+                  <div key={i} className="form-display-schedule-header">
+                  <div className="form-display-name">
+                    {schedule.streamer_name.toString()} 
                   </div>
+                   <div>
+                    {schedule.hour_day}
+                   </div>
+                    <div>duration: {schedule.duration}h:00</div> 
+                  </div>
+                  {this.props.isdelete && (
                   <div
-                    className="form-display-schedule container"
+                    className="form-display-schedule-container"
                     onClick={() => this.deleteElement(schedule._id)}
                   >
                     stuff to print
                   </div>
+                  )}
+
+                    <div>
+                   <p>View schedule img</p>
+                    </div>
+
+          </Link>
                 </div>
               ))}
             </li>

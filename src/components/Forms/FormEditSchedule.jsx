@@ -228,7 +228,7 @@ class EditSchedule extends React.Component {
               <MenuItem value="Sunday">Sunday</MenuItem>
             </Select>
             <br />
-
+      <p style={{marginTop:"2%", marginBottom:"2%"}}> Upload your planning </p>
        <input
         accept="image/*"
         className={classes.input}
