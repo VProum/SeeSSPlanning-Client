@@ -1,9 +1,9 @@
-.line-row {
+.form-display-schedule .line-row {
     display: flex;
     flex-direction: row;
 }
 
-.card {
+.form-display-schedule .card {
     width: 70%;
     height: 6vh;
     display: flex;
@@ -11,7 +11,7 @@
     border: 1px red solid;
 }
 
-.header {
+.form-display-schedule .header {
     height: 30%;
     background: red;
     color: white;
@@ -19,6 +19,6 @@
     font-size: 12px;
 }
 
-.container {
+.form-display-schedule .container {
     padding: 2px 16px;
 }

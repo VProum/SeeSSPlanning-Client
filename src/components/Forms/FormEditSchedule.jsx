@@ -43,7 +43,21 @@ class EditSchedule extends React.Component {
     hour_day: null,
     duration: 3,
     weekday: "",
+    
+  schedule_obj: {
+      hour_day: null,
+      duration: 3,
+      weekday: "",
+    },
+    schedule_list: [],
   };
+
+
+  componentDidMount() {
+    this.setState({
+      schedule_list : this.props.schedule_list
+    });
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -52,35 +66,39 @@ class EditSchedule extends React.Component {
   };
 
   handleDateChange = (date) => {
-    this.setState({
+    this.setState(prevState => ({
       hour_day: date,
-    });
+      schedule_obj:{ ...prevState.schedule_obj, hour_day: date,}
+    }));
   };
 
   valuetext = (event, value) => {
-     let tmp = value;
-     this.setState({
+
+   let tmp = value;
+
+this.setState(prevState => ({
          duration: tmp,
-     })
+        schedule_obj:{ ...prevState.schedule_obj, duration: tmp,}
+     }))
   };
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    apiHandler.createScheduleOne(this.state)
-    .then()
+    apiHandler.createScheduleOne(this.state.schedule_obj)
+    .then( res => this.props.addSchedule(res)
+    )
     .catch((err) => {
       console.log(err)
     })
-
-    this.props.addSchedule(this.state);
+   
   };
 
   handleSelectChange = (e) => {
-    this.setState({
-        weekday: e.target.value
-    })
+    this.setState(prevState => ({
+        weekday: e.target.value,
+        schedule_obj:{ ...prevState.schedule_obj, weekday: e.target.value,}
+    }))
   };
-
 
   render() {
     const { classes } = this.props;
@@ -136,6 +154,7 @@ class EditSchedule extends React.Component {
       },
     ];
 
+ // console.log(this.state.schedule_list, " type schedule_list in formEditSchedule");
     return (
       <div className={`${classes.root} margin-left`}>
             Add a stream in schedule

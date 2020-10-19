@@ -109,12 +109,11 @@ export default {
     ///// Schedule part
 
     createScheduleOne(data) {
-        return service.post("/schedule/create", data);
+        return service.post("/schedule/create", data)
+        .then((res) => res.data)
     },
 
     getSchedule() {
-        console.log("dans la bonne route");
-
         return service.get("/schedule/get")
         .then((res) => res.data)
         .catch(errorHandler);
@@ -122,9 +121,8 @@ export default {
 
 
     deleteScheduleOne(id){
-       
-        return service.delete("/schedule/delete/"+id);
-
+        return service.delete("/schedule/delete/"+id)
+        .then((res) => res.data)
     }
 
 };
