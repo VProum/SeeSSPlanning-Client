@@ -41,7 +41,25 @@ class FormDisplaySchedule extends React.Component {
     });
 
 
-    
+    function compare(a, b) {
+   
+      const hour1 = a.hour_day;
+      const hour2 = b.hour_day;    
+      let comparison = 0;
+      if (hour1 > hour2) {
+        comparison = 1;
+      } else if (hour1 < hour2) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+
+      for(const prop in formatPlanning){
+        formatPlanning[prop].sort(compare);
+      }
+
+      console.log(formatPlanning);
 
     return formatPlanning;
   };
@@ -63,15 +81,15 @@ class FormDisplaySchedule extends React.Component {
         <h1>Planning week</h1>
         <ul>
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
-            <li key={index} className="line-row">
+            <li key={index} className="form-display-schedule line-row">
               <div style={{ width: "12vw" }}>  <strong>{weekDay}</strong> </div>
               {scheduleList.map((schedule, i) => (
-                <div className="card" key={i}>
-                  <div key={i} className="header">
+                <div className="form-display-schedule card" key={i}>
+                  <div key={i} className="form-display-schedule header">
                     {schedule.hour_day} || duration: {schedule.duration}h:00
                   </div>
                   <div
-                    className="container"
+                    className="form-display-schedule container"
                     onClick={() => this.deleteElement(schedule._id)}
                   >
                     stuff to print
