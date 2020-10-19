@@ -54,7 +54,7 @@ class FormDisplaySchedule extends React.Component {
       for(const prop in formatPlanning){
         formatPlanning[prop].sort(compare);
       }
-
+console.log(formatPlanning, " <<<<<<<in formatPlanning");
     return formatPlanning;
   };
 
@@ -80,7 +80,7 @@ class FormDisplaySchedule extends React.Component {
               {scheduleList.map((schedule, i) => (
                 <div className="form-display-schedule card" key={i}>
                   <div key={i} className="form-display-schedule header">
-                    {schedule.hour_day} || duration: {schedule.duration}h:00
+                   {schedule.streamer_name.toString()} || {schedule.hour_day} || duration: {schedule.duration}h:00
                   </div>
                   <div
                     className="form-display-schedule container"

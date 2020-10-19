@@ -15,11 +15,13 @@ class EditSchedule extends Component {
     hour_day: null,
     duration: 3,
     weekday: "",
+    nickname : "",
     schedule_list: [],
   };
 
   componentDidMount() {
     apiHandler.getSchedule().then((dbRes) => {
+  
       this.setState({
         schedule_list: dbRes,
       });
