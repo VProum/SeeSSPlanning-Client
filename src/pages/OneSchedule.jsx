@@ -1,6 +1,5 @@
 import React from 'react';
 import UserContext from "../components/Auth/UserContext";
-import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -12,29 +11,32 @@ import CircularProgress from '@material-ui/core/CircularProgress';
     };
 
     componentDidMount() {
-        apiHandler.getDetailSchedule(this.props.match.params.id)
+        apiHandler.getUserPlanning(this.props.match.params.id)
         .then(apiRes => {
             this.setState({
-                streamerFiltered: apiRes,
+                streamerFiltered: apiRes[0],
             });
         }).catch(err => {console.log(err)})
     }
 
     render() {
-        const { user } = this.props.context;
-    
-    if (!user) return <CircularProgress />;
         return (
             <div>
                 <h1>See planning, next stream?</h1>
                 <div>
-                    {this.state.streamerFiltered.length > 0 && (
-                        <img src={this.state.streamerFiltered[0].planning_image} alt=""/>
-                    )}
+                  
+                        {this.state.streamerFiltered && (
+                            <div>
+                             <img src={this.state.streamerFiltered.planning_image} alt="pouet"/> 
+                            </div>
+                        )}
+
+                       
+
                 </div>
             </div>
         )
     }
 }
 
-export default withUser(OneSchedule);
+export default OneSchedule;

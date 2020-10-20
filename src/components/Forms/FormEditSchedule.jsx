@@ -53,6 +53,7 @@ class EditSchedule extends React.Component {
       image:"",
     },
     schedule_list: [],
+    planning_image: "",
   };
 
   componentDidMount() {
@@ -173,8 +174,10 @@ class EditSchedule extends React.Component {
       },
     ];
 
+    const {user} = this.props.context;
+
     return (
-      <div className={`${classes.root} margin-left`}>
+      <div className={`${classes.root} margin-left`} >
         Add a stream in schedule
         <br />
         <form className={classes.root} onSubmit={this.handleSubmit}>
@@ -235,7 +238,7 @@ class EditSchedule extends React.Component {
         id="contained-button-file"
         multiple
         type="file"
-        name="image"
+        name="planning_image"
         onChange={this.handleImgChange}
       />
       <label htmlFor="contained-button-file">

@@ -17,11 +17,11 @@
 .form-display-schedule-header {
     height: 30%;
     background: #442d6b;
-    color: white;
+    
     text-align: center;
     font-size: 12px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     /* border-radius: 10px; */
 }
 
@@ -29,4 +29,5 @@
     padding: 2px 16px;
     display: flex;
     justify-content: center;
+    
 }

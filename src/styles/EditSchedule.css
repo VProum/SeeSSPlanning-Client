@@ -1,4 +1,4 @@
 .edit-schedule-container {
    display: grid;
-   grid-template-columns: repeat(2, 42%);
+   grid-template-columns: repeat(1, 100%);
 }

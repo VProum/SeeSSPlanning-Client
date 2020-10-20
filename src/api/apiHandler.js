@@ -105,6 +105,12 @@ export default {
             .catch(errorHandler);
     },
 
+    getUserPlanning(id){
+        return service
+            .get("/user/planning/"+ id)
+            .then((res) => res.data)
+            .catch(errorHandler)
+    },
 
     ///// Schedule part
 
