@@ -1,0 +1,13 @@
+.streamer-list {
+    margin-left: 10vw;
+    width: 90vw;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-content: center;
+    background-image: url("https://i.pinimg.com/originals/75/5c/57/755c576d50d64770a04e703402eddfc3.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

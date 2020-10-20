@@ -4,6 +4,7 @@ import StreamerList from "../components/StreamerList";
 import apiHandler from "../api/apiHandler";
 import StreamerDetail from "../components/StreamerDetail";
 
+
 export default class EditUser extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +47,7 @@ export default class EditUser extends Component {
     let donotmutate = [...this.state.streamer_follow];
     //console.log("removefollow2", donotmutate[index]);
     await apiHandler.removeFollowStreamer(donotmutate[index]._id); //remove from db
-    donotmutate.splice(index,1); //remove from state
+    donotmutate.splice(index, 1); //remove from state
     //console.log("edit user state",donotmutate)
     //donotmutate = [...new Set(donotmutate)]
     this.setState({
@@ -63,8 +64,12 @@ export default class EditUser extends Component {
           userList={this.state.streamer_follow}
         />
         <div>
-          <StreamerDetail/>
-          <StreamerList userList={this.state.streamer_follow} removeStreamer={this.removeFollow} isDelete/>
+          <StreamerDetail />
+          <StreamerList
+            userList={this.state.streamer_follow}
+            removeStreamer={this.removeFollow}
+            isDelete
+          />
         </div>
       </div>
     );

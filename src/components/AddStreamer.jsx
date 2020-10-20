@@ -6,6 +6,16 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import apiHandler from "../api/apiHandler";
 
+import {
+  Checkbox,
+  Grid,
+  Header,
+  Image,
+  Menu,
+  Segment,
+  Sidebar,
+} from "semantic-ui-react";
+
 // const useStyles = makeStyles((theme) => ({
 //   root: {
 //     display: "flex",
@@ -52,15 +62,29 @@ export default class AddStreamer extends Component {
     const classes = this.props;
     return (
       <div className={classes.root}>
-        <FilterBar />
-        <div style={{ display: "grid", width: "30%" }}>
-          {this.state.streamer_list.map((item, i) => (
-            <GridListTile key={item._id} id={i} onClick={this.ClickHandler}>
-              <img src={item.avatar} alt="blur"></img>
-              <GridListTileBar title={item.nickname} />
-            </GridListTile>
-          ))}
-        </div>
+        <Grid columns={1}>
+          <Grid.Column>
+            <Sidebar
+              as={Menu}
+              animation="push"
+              inverted
+              visible
+              vertical
+              width="thin"
+            >
+              {this.state.streamer_list.map((item, i) => (
+                <Menu.Item
+                  key={i}
+                  id={i}
+                  onClick={this.ClickHandler}
+                >
+                  <Image src={item.avatar} alt="toto" avatar />
+                  <span>{item.nickname}</span>
+                </Menu.Item>
+              ))}
+            </Sidebar>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }

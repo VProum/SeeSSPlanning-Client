@@ -4,6 +4,7 @@ import apiHandler from "../api/apiHandler";
 import StreamerList from "../components/StreamerList";
 
 
+
 class Home extends React.Component {
 
 state = {
@@ -21,9 +22,7 @@ async componentDidMount() {
   render() {
     return (
       <div>
-        <h1>Home Page ∆</h1>
         <StreamerList userList={this.state.allStreamers} />
-        
       </div>
     );
   }
