@@ -4,7 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import { withStyles } from "@material-ui/core/styles";
 import FormDisplaySchedule from "../components/Forms/FormDisplaySchedule";
-
+import { withUser } from "../components/Auth/withUser";
 import {
   Checkbox,
   Grid,
@@ -87,7 +87,7 @@ class Planning extends Component {
 
   render() {
     this.handlefFormatSchedule();
-   
+    const {user} = this.props.context;
     return (
       <Grid columns={1}>
         <Grid.Column>
@@ -178,4 +178,4 @@ class Planning extends Component {
   }
 }
 
-export default withStyles(useStyles)(Planning);
+export default withStyles(useStyles)(withUser(Planning));

@@ -5,14 +5,17 @@ import { withStyles } from "@material-ui/core/styles";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = (theme) => ({
   root: {
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
+    color: "whitesmoke",
     "& > *": {
       margin: theme.spacing(0.5),
+      color: "whitesmoke"
     },
   },
 });
@@ -57,7 +60,7 @@ class FormDisplaySchedule extends React.Component {
     for (const prop in formatPlanning) {
       formatPlanning[prop].sort(compare);
     }
-
+    
     return formatPlanning;
   };
 
@@ -73,10 +76,13 @@ class FormDisplaySchedule extends React.Component {
 
   render() {
     let scheduleObj = this.handleScheduleFormat(this.props.schedule_list);
+    const {user} = this.props.context;
+    
+    if (!user) return <CircularProgress />;
     return (
-      <div style={{ marginTop: "7%" }}>
+      <div style={{ marginTop: "7%", background: "#17111e ",   color: "whitesmoke" }}>
         <h1>Planning week</h1>
-        <ul>
+        <ul >
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
             <li key={index} className="form-display-schedule-line-row">
               <div style={{ width: "12vw" }}>
@@ -85,8 +91,8 @@ class FormDisplaySchedule extends React.Component {
               </div>
               {scheduleList.map((schedule, i) => (
                 <div key={i}>
-                  <Card.Group>
-                    <Card>
+                  <Card.Group >
+                    <Card style={{backgroundColor: "#342450", color: "white",  display:"flex", flexDirection:"column", marginRight: "20%" }}> 
                       <Card.Content>
                         <Image
                           floated="right"
@@ -94,7 +100,7 @@ class FormDisplaySchedule extends React.Component {
                           src={schedule.avatar} alt="pouet"
                         />
                           
-                        <Card.Header>{schedule.hour_day}</Card.Header>
+                        <Card.Header  style={{color:"whitesmoke"}} >{schedule.hour_day}</Card.Header>
                         <Card.Meta>duration: {schedule.duration}h:00</Card.Meta>
                         <Card.Description>
                           {schedule.streamer_name.toString()}
@@ -102,13 +108,17 @@ class FormDisplaySchedule extends React.Component {
                       </Card.Content>
                       <Card.Content extra>
                         <div className="ui two buttons">
+                        {!this.props.isdelete && (
                           <Button basic color="green">
-                            <Link to={`/schedule/view/${schedule._id}`}>
+                            <Link to={`/user/planning/${schedule.streamer_id}`}>
                               GO to planning
+                             
+                              {/* user/planning/user[0]._id get currentuser */}
                             </Link>
                           </Button>
+                        )}
                             {this.props.isdelete && (
-                          <Button basic color="red">
+                          <Button basic color="blue">
                               <div
                                 className="form-display-schedule-container"
                                 onClick={() => this.deleteElement(schedule._id)}
