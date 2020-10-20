@@ -1,24 +1,31 @@
-.form-display-schedule .line-row {
+.form-display-schedule-line-row {
     display: flex;
     flex-direction: row;
+    margin-bottom: 5%;
 }
 
-.form-display-schedule .card {
-    width: 70%;
-    height: 6vh;
+.form-display-schedule-card {
+    width: 20%;
+    height: 25%;
     display: flex;
+    margin-left: 2%;
+
     flex-direction: column;
     border: 1px red solid;
 }
 
-.form-display-schedule .header {
+.form-display-schedule-header {
     height: 30%;
     background: red;
     color: white;
     text-align: center;
     font-size: 12px;
+    display: flex;
+    flex-direction: column;
 }
 
-.form-display-schedule .container {
+.form-display-schedule-container {
     padding: 2px 16px;
+    display: flex;
+    justify-content: center;
 }

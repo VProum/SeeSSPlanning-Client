@@ -124,6 +124,15 @@ export default {
     deleteScheduleOne(id){
         return service.delete("/schedule/delete/"+id)
         .then((res) => res.data)
+    },
+
+
+    ///// Schedule details
+
+    getDetailSchedule(id){
+        return service.get("/schedule/view/"+id)
+        .then((res) => res.data)
     }
+
 
 };
