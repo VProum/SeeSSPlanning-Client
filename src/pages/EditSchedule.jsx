@@ -21,7 +21,7 @@ class EditSchedule extends Component {
 
   componentDidMount() {
     apiHandler.getSchedule().then((dbRes) => {
-  
+      console.log(">>>>>>>>>>>\r\n", dbRes, "\r\n <<<<<<<<<<<<<<<<<");
       this.setState({
         schedule_list: dbRes,
       });

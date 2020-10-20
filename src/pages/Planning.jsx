@@ -68,6 +68,7 @@ class Planning extends Component {
   
   handlefFormatSchedule(){
     let scheduleListAll = [];
+    console.log("pouet pouet: ",this.state.filterStreamer, "<<<<<<<<<")
     let filterStreamerTmp = [...this.state.filterStreamer];
 
     filterStreamerTmp.map((item, index) =>{

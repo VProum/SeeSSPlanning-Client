@@ -23,6 +23,7 @@ class FormDisplaySchedule extends React.Component {
   };
 
   handleScheduleFormat = (value) => {
+    
     let formatPlanning = {
       Monday: [],
       Tuesday: [],
@@ -56,6 +57,8 @@ class FormDisplaySchedule extends React.Component {
     for (const prop in formatPlanning) {
       formatPlanning[prop].sort(compare);
     }
+
+    // console.log(">>>>>>>\r\n", formatPlanning, "\r\n<<<<<<<<<<<<\r\n");
     return formatPlanning;
   };
 
@@ -89,8 +92,9 @@ class FormDisplaySchedule extends React.Component {
                         <Image
                           floated="right"
                           size="mini"
-                          src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
+                          src={schedule.avatar} alt="pouet"
                         />
+                          
                         <Card.Header>{schedule.hour_day}</Card.Header>
                         <Card.Meta>duration: {schedule.duration}h:00</Card.Meta>
                         <Card.Description>
