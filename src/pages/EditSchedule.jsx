@@ -21,7 +21,6 @@ class EditSchedule extends Component {
 
   componentDidMount() {
     apiHandler.getSchedule().then((dbRes) => {
-      console.log(">>>>>>>>>>>\r\n", dbRes, "\r\n <<<<<<<<<<<<<<<<<");
       this.setState({
         schedule_list: dbRes,
       });
@@ -41,10 +40,8 @@ class EditSchedule extends Component {
   }
 
   render() {
-    const { user } = this.props.context;
-    
+    const { user } = this.props.context; 
     if (!user) return <CircularProgress />;
-
     return (
       <div>
         <h1>Schedule your stream</h1>

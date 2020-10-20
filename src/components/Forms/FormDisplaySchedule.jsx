@@ -58,7 +58,6 @@ class FormDisplaySchedule extends React.Component {
       formatPlanning[prop].sort(compare);
     }
 
-    // console.log(">>>>>>>\r\n", formatPlanning, "\r\n<<<<<<<<<<<<\r\n");
     return formatPlanning;
   };
 
