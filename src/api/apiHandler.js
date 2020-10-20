@@ -59,7 +59,7 @@ export default {
     },
 
     testPouet() {
-        return service.get("https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=http://localhost:8080&response_type=token&scope=user:read:email").then(apires => console.log(apires));
+        return service.get("https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=http://localhost:8080&response_type=token&scope=user:read:email+moderation:read").then(apires => console.log(apires));
     },
 
     getStreamer() {
@@ -71,10 +71,10 @@ export default {
 
     getFilteredStreamer(data) {
         return service
-        .get("/user/streamer/search/" + data)
-        //.then(res => res.data)
-        .then(res => res.data)
-        .catch(errorHandler);
+            .get("/user/streamer/search/" + data)
+            //.then(res => res.data)
+            .then(res => res.data)
+            .catch(errorHandler);
     },
 
     getUserFollow() {
@@ -111,27 +111,27 @@ export default {
     createScheduleOne(data) {
         console.log(data);
         return service.post("/schedule/create", data)
-        .then((res) => res.data)
+            .then((res) => res.data)
     },
 
     getSchedule() {
         return service.get("/schedule/get")
-        .then((res) => res.data)
-        .catch(errorHandler);
+            .then((res) => res.data)
+            .catch(errorHandler);
     },
 
 
-    deleteScheduleOne(id){
-        return service.delete("/schedule/delete/"+id)
-        .then((res) => res.data)
+    deleteScheduleOne(id) {
+        return service.delete("/schedule/delete/" + id)
+            .then((res) => res.data)
     },
 
 
     ///// Schedule details
 
-    getDetailSchedule(id){
-        return service.get("/schedule/view/"+id)
-        .then((res) => res.data)
+    getDetailSchedule(id) {
+        return service.get("/schedule/view/" + id)
+            .then((res) => res.data)
     }
 
 

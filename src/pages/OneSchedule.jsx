@@ -11,13 +11,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
         streamerFiltered: [],
     };
 
-    componentDidMount(props) {
+    componentDidMount() {
         apiHandler.getDetailSchedule(this.props.match.params.id)
         .then(apiRes => {
             this.setState({
                 streamerFiltered: apiRes,
             });
-        })
+        }).catch(err => {console.log(err)})
     }
 
     render() {
