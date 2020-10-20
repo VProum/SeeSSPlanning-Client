@@ -64,7 +64,7 @@ export default class EditUser extends Component {
         />
         <div>
           <StreamerDetail/>
-          <StreamerList userList={this.state.streamer_follow} removeStreamer={this.removeFollow}/>
+          <StreamerList userList={this.state.streamer_follow} removeStreamer={this.removeFollow} isDelete/>
         </div>
       </div>
     );

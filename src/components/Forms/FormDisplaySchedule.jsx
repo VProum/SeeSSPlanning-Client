@@ -80,7 +80,7 @@ console.log(formatPlanning, " <<<<<<<in formatPlanning");
               {scheduleList.map((schedule, i) => (
                 <div className="form-display-schedule card" key={i}>
                   <div key={i} className="form-display-schedule header">
-                   {schedule.streamer_name.toString()} || {schedule.hour_day} || duration: {schedule.duration}h:00
+                   {schedule.streamer_name ? schedule.streamer_name.toString() : "Toto"} || {schedule.hour_day} || duration: {schedule.duration}h:00
                   </div>
                   <div
                     className="form-display-schedule container"

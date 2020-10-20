@@ -22,7 +22,7 @@ async componentDidMount() {
     return (
       <div>
         <h1>Home Page ∆</h1>
-        <StreamerList userList={this.state.allStreamers}/>
+        <StreamerList userList={this.state.allStreamers} />
         
       </div>
     );

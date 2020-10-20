@@ -18,6 +18,7 @@ const StreamerList = (props) => {
     console.log(event.currentTarget);
   }
 
+
   function deleteHandler(event) {
       //console.log("delete", event.currentTarget.id);
       props.removeStreamer(event.currentTarget.id);
@@ -32,7 +33,7 @@ const StreamerList = (props) => {
           <img src={item.avatar} alt="blur"></img>
           <GridListTileBar title={item.nickname} />
         </GridListTile>
-            <Button
+            {props.isDelete && <Button
               variant="contained"
               color="secondary"
               className={classes.button}
@@ -41,7 +42,7 @@ const StreamerList = (props) => {
               id={i}
             >
               remove
-            </Button>
+            </Button>}
             </div>
       ))}
     </div>

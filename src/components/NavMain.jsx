@@ -62,7 +62,7 @@ const NavMain = (props) => {
     <div className={classes.root}>
       {console.log(user)}
       {/* <MuiThemeProvider theme={darkTheme}> */}
-      <AppBar position="sticky" style={{ backgroundColor: "black" }}>
+      <AppBar position="sticky" style={{ backgroundColor: "#251a36"}}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -71,34 +71,38 @@ const NavMain = (props) => {
             aria-label="menu"
           >
             <NavLink exact to="/">
-              <HomeIcon fontSize="large" />
+              <HomeIcon />
             </NavLink>
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h7" className={classes.title}>
             <NavLink exact to="/planning">
-              {user && <span style={{ marginRight: "5%" }}>Planning</span>}
+              {user && <span style={{ marginRight: "3%" }}>Planning</span>}
             </NavLink>
             <NavLink exact to="/schedule/edit">
-              {user && user[0].isStreamer &&
-                <span style={{ marginRight: "5%" }}>Schedule</span>
-              }
+              {user && user[0].isStreamer && (
+                <span style={{ marginRight: "3%" }}>Schedule</span>
+              )}
             </NavLink>
             <NavLink exact to="/user/edit">
               {user && (
-                <span style={{ marginRight: "5%" }}>{user[0].nickname}</span>
+                <span style={{ marginRight: "3%" }}>{user[0].nickname}</span>
               )}
             </NavLink>
             <NavLink exact to="/user/edit">
               Contact
             </NavLink>
           </Typography>
-          
-          {!user && <Button color="inherit" onClick={handleLogin}>
-            Login
-          </Button>}
-          { user && <Button color="inherit" onClick={handleLogout}>
-            Logout
-          </Button>}
+
+          {!user && (
+            <Button color="inherit" onClick={handleLogin}>
+              Login
+            </Button>
+          )}
+          {user && (
+            <Button color="inherit" onClick={handleLogout}>
+              Logout
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       {/* </MuiThemeProvider > */}
