@@ -4,6 +4,7 @@ import "../../styles/FormDisplaySchedule.css";
 import { withStyles } from "@material-ui/core/styles";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
+import { Button, Card, Image } from "semantic-ui-react";
 
 const useStyles = (theme) => ({
   root: {
@@ -81,28 +82,42 @@ class FormDisplaySchedule extends React.Component {
                 <strong>{weekDay}</strong>{" "}
               </div>
               {scheduleList.map((schedule, i) => (
-                <div className="form-display-schedule-card" key={i}>
-                  <Link to={`/schedule/view/${schedule._id}`}>
-                    <div key={i} className="form-display-schedule-header">
-                      <div className="form-display-name">
-                        {schedule.streamer_name.toString()}
-                      </div>
-                      <div>{schedule.hour_day}</div>
-                      <div>duration: {schedule.duration}h:00</div>
-                    </div>
-                    {this.props.isdelete && (
-                      <div
-                        className="form-display-schedule-container"
-                        onClick={() => this.deleteElement(schedule._id)}
-                      >
-                        stuff to print
-                      </div>
-                    )}
-
-                    <div>
-                      <p>View schedule img</p>
-                    </div>
-                  </Link>
+                <div key={i}>
+                  <Card.Group>
+                    <Card>
+                      <Card.Content>
+                        <Image
+                          floated="right"
+                          size="mini"
+                          src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
+                        />
+                        <Card.Header>{schedule.hour_day}</Card.Header>
+                        <Card.Meta>duration: {schedule.duration}h:00</Card.Meta>
+                        <Card.Description>
+                          {schedule.streamer_name.toString()}
+                        </Card.Description>
+                      </Card.Content>
+                      <Card.Content extra>
+                        <div className="ui two buttons">
+                          <Button basic color="green">
+                            <Link to={`/schedule/view/${schedule._id}`}>
+                              GO to planning
+                            </Link>
+                          </Button>
+                            {this.props.isdelete && (
+                          <Button basic color="red">
+                              <div
+                                className="form-display-schedule-container"
+                                onClick={() => this.deleteElement(schedule._id)}
+                              >
+                                Delete
+                              </div>
+                          </Button>
+                            )}
+                        </div>
+                      </Card.Content>
+                    </Card>
+                  </Card.Group>
                 </div>
               ))}
             </li>

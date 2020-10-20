@@ -9,19 +9,20 @@
     height: 25%;
     display: flex;
     margin-left: 2%;
-
     flex-direction: column;
-    border: 1px red solid;
+    border: 1px #442d6b solid;
+    /* border-radius: 10px; */
 }
 
 .form-display-schedule-header {
     height: 30%;
-    background: red;
+    background: #442d6b;
     color: white;
     text-align: center;
     font-size: 12px;
     display: flex;
     flex-direction: column;
+    /* border-radius: 10px; */
 }
 
 .form-display-schedule-container {
