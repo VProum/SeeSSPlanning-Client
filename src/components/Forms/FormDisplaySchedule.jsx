@@ -80,32 +80,8 @@ class FormDisplaySchedule extends React.Component {
     const { user } = this.props.context;
 
     if (!user) return <CircularProgress />;
-
-<<<<<<< HEAD
-    let cardStyle;
-    if (this.props.schedule_list.length > 0) {
-      cardStyle = {
-        //backgroundColor: this.props.schedule_list[0].colorBackground ? this.props.schedule_list[0].colorBackground : "#342450",
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-        marginRight: "20%",
-      };
-    }
-=======
-    const cardStyle = {
-      backgroundColor: this.props.schedule_list.colorBackground
-        ? this.props.schedule_list.colorBackground
-        : "#342450",
-      color: "white",
-      display: "flex",
-      flexDirection: "column",
-      marginRight: "20%",
-    };
->>>>>>> 3190253d01d40a3c5ee8b41e27bfcfc3dacd1d06
-
-    console.log("uhfviquehdbouhr", this.props.schedule_list);
-    console.log("qfhvmjqnfmilghqimurshgilmuRHG", scheduleObj)
+    // console.log("uhfviquehdbouhr", this.props.schedule_list);
+    // console.log("qfhvmjqnfmilghqimurshgilmuRHG", scheduleObj)
     return (
       <div
         style={{
