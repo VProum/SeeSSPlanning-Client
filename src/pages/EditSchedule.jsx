@@ -49,7 +49,7 @@ class EditSchedule extends Component {
           <FormEditSchedule addSchedule={this.handleAdd} />
           {/* schedule_list={this.state.schedule_list} /> */}
           {/* <FormDisplayStreamer /> */}
-          <div style={{width:"100vW"}}>
+          <div style={{width:"100vW"}} >
               <FormDisplaySchedule deleteSchedule={this.handleDelete} isdelete schedule_list={this.state.schedule_list} /> 
           </div>
         </div>

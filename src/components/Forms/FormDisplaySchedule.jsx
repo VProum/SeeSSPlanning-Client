@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = (theme) => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = (theme) => ({
     color: "whitesmoke",
     "& > *": {
       margin: theme.spacing(0.5),
-      color: "whitesmoke"
+      color: "whitesmoke",
     },
   },
 });
@@ -26,7 +26,6 @@ class FormDisplaySchedule extends React.Component {
   };
 
   handleScheduleFormat = (value) => {
-    
     let formatPlanning = {
       Monday: [],
       Tuesday: [],
@@ -60,7 +59,7 @@ class FormDisplaySchedule extends React.Component {
     for (const prop in formatPlanning) {
       formatPlanning[prop].sort(compare);
     }
-    
+
     return formatPlanning;
   };
 
@@ -76,13 +75,24 @@ class FormDisplaySchedule extends React.Component {
 
   render() {
     let scheduleObj = this.handleScheduleFormat(this.props.schedule_list);
-    const {user} = this.props.context;
-    
+    const { user } = this.props.context;
+
     if (!user) return <CircularProgress />;
+
+    const cardStyle = {
+      backgroundColor: this.props.colorBackground ? this. props.colorBackground : "#342450",
+      color: "white",
+      display: "flex",
+      flexDirection: "column",
+      marginRight: "20%",
+    };
+
     return (
-      <div style={{ marginTop: "7%", background: "#17111e ",   color: "whitesmoke" }}>
+      <div
+        style={{ marginTop: "7%", backgroundColor: "#17111e", color: "whitesmoke" }}
+      >
         <h1>Planning week</h1>
-        <ul >
+        <ul className="pouet">
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
             <li key={index} className="form-display-schedule-line-row">
               <div style={{ width: "12vw" }}>
@@ -91,44 +101,42 @@ class FormDisplaySchedule extends React.Component {
               </div>
               {scheduleList.map((schedule, i) => (
                 <div key={i} className="fliptheCard">
-                  <Card.Group >
-                    <Card style={{backgroundColor: "#342450", color: "white",  display:"flex", flexDirection:"column", marginRight: "20%" }}> 
-                      <Card.Content>
-                        <Image
-                          floated="right"
-                          size="mini"
-                          src={schedule.avatar} alt="pouet"
-                        />
-                          
-                        <Card.Header  style={{color:"whitesmoke"}} >{schedule.hour_day}</Card.Header>
-                        <Card.Meta>duration: {schedule.duration}h:00</Card.Meta>
-                        <Card.Description>
-                          {schedule.streamer_name.toString()}
-                        </Card.Description>
-                      </Card.Content>
-                      <Card.Content extra>
-                        <div className="ui two buttons">
-                        {!this.props.isdelete && (
-                          <Button basic color="green">
-                            <Link to={`/user/planning/${schedule.streamer_id}`}>
-                              GO to planning
-                             
-                              {/* user/planning/user[0]._id get currentuser */}
-                            </Link>
-                          </Button>
-                        )}
-                            {this.props.isdelete && (
-                          <Button basic color="blue">
+                  <Card.Group className="main-card">
+                    <Card style={
+                      cardStyle
+                      }>
+                      <Link to={`/user/planning/${schedule.streamer_id}`}>
+                        <Card.Content>
+                          <Image
+                            floated="right"
+                            size="mini"
+                            src={schedule.avatar}
+                            alt="pouet"
+                          />
+
+                          <Card.Header style={{ color: "whitesmoke" }}>
+                            {schedule.hour_day}
+                            <br />
+                            {schedule.hour_day}
+                          </Card.Header>
+                          <Card.Meta></Card.Meta>
+                          <Card.Description></Card.Description>
+                        </Card.Content>
+                      </Link>
+                      {this.props.isdelete && (
+                        <Card.Content extra>
+                          <div className="ui two buttons">
+                            <Button basic color="blue">
                               <div
                                 className="form-display-schedule-container"
                                 onClick={() => this.deleteElement(schedule._id)}
                               >
                                 Delete
                               </div>
-                          </Button>
-                            )}
-                        </div>
-                      </Card.Content>
+                            </Button>
+                          </div>
+                        </Card.Content>
+                      )}
                     </Card>
                   </Card.Group>
                 </div>

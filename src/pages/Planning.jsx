@@ -152,7 +152,7 @@ class Planning extends Component {
               ))}
             </Sidebar>
 
-            <Sidebar.Pusher dimmed={this.state.dimmed}>
+            <Sidebar.Pusher dimmed={this.state.dimmed} style={{backgroundColor: "#442d6b" }}>
               {/* <Segment basic>
                 <Header as="h3">Application Content</Header>
                 <Image src="https://static-cdn.jtvnw.net/jtv_user_pictures/9b1e0ea9-6dd0-40c1-b255-3f3cea8d1814-profile_image-300x300.png" />
