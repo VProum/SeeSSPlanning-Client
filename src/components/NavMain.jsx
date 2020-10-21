@@ -40,7 +40,7 @@ const NavMain = (props) => {
       .logout()
       .then(() => {
         context.removeUser();
-        window.location = "http://localhost:3000";
+        window.location = window.location.href;
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +49,7 @@ const NavMain = (props) => {
   const classes = useStyles();
 
   function handleLogin() {
-    console.log(process.env);
+    //console.log(process.env);
 
     const uri = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_BACKEND_URL}/auth/twitch/callback&response_type=code&scope=user:read:email`;
 
