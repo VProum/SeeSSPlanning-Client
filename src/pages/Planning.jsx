@@ -150,18 +150,6 @@ class Planning extends Component {
                   <span>{item.nickname}</span>
                 </Menu.Item>
               ))}
-
-              <Menu.Item>
-                <Image
-                  src="https://static-cdn.jtvnw.net/jtv_user_pictures/9b1e0ea9-6dd0-40c1-b255-3f3cea8d1814-profile_image-300x300.png"
-                  alt="toto"
-                  avatar
-                />
-                <span>MisterMV</span>
-                <Segment inverted>
-                  <Checkbox toggle />
-                </Segment>
-              </Menu.Item>
             </Sidebar>
 
             <Sidebar.Pusher dimmed={this.state.dimmed}>
