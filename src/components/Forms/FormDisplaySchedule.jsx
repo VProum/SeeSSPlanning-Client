@@ -80,7 +80,9 @@ class FormDisplaySchedule extends React.Component {
     if (!user) return <CircularProgress />;
 
     const cardStyle = {
-      backgroundColor: this.props.colorBackground ? this. props.colorBackground : "#342450",
+      backgroundColor: this.props.schedule_list.colorBackground
+        ? this.props.schedule_list.colorBackground
+        : "#342450",
       color: "white",
       display: "flex",
       flexDirection: "column",
@@ -89,29 +91,40 @@ class FormDisplaySchedule extends React.Component {
 
     return (
       <div
-        style={{ marginTop: "7%", backgroundColor: "#17111e", color: "whitesmoke" }}
+        style={{
+          backgroundColor: "#17111e",
+          color: "whitesmoke",
+        }}
       >
         <h1>Planning week</h1>
-        <ul className="pouet">
+        <ul className="form-display-card" >
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
             <li key={index} className="form-display-schedule-line-row">
-              <div style={{ width: "12vw" }}>
+              <div >
                 {" "}
                 <strong>{weekDay}</strong>{" "}
               </div>
               {scheduleList.map((schedule, i) => (
                 <div key={i} className="fliptheCard">
                   <Card.Group className="main-card">
-                    <Card style={
-                      cardStyle
-                      }>
+                    <Card
+                      style={{
+                        backgroundColor: this.props.schedule_list[i].colorBackground
+                          ? this.props.schedule_list[i].colorBackground: "#342450",
+                        color: "white",
+                        display: "flex",
+                        flexDirection: "column",
+                        marginRight: "20%",
+                        width: "150px",
+                      }}
+                    >
                       <Link to={`/user/planning/${schedule.streamer_id}`}>
-                        <Card.Content>
+                        <Card.Content className="form-display-schedule-content">
                           <Image
                             floated="right"
                             size="mini"
                             src={schedule.avatar}
-                            alt="pouet"
+                            alt="titi"
                           />
 
                           <Card.Header style={{ color: "whitesmoke" }}>

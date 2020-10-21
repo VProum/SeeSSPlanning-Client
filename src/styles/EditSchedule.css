@@ -2,3 +2,8 @@
    display: grid;
    grid-template-columns: repeat(1, 100%);
 }
+
+.display-schedule-container{
+   background-color: #442d6b;
+   margin-top: 5%;
+}

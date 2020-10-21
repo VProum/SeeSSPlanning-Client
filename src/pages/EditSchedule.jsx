@@ -8,6 +8,7 @@ import apiHandler from "../api/apiHandler";
 import FormDisplaySchedule from "../components/Forms/FormDisplaySchedule";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+
 class EditSchedule extends Component {
   static contextType = UserContext;
 
@@ -49,7 +50,7 @@ class EditSchedule extends Component {
           <FormEditSchedule addSchedule={this.handleAdd} />
           {/* schedule_list={this.state.schedule_list} /> */}
           {/* <FormDisplayStreamer /> */}
-          <div style={{width:"100vW"}} >
+          <div className="display-schedule-container">
               <FormDisplaySchedule deleteSchedule={this.handleDelete} isdelete schedule_list={this.state.schedule_list} /> 
           </div>
         </div>
