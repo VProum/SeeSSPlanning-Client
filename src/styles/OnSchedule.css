@@ -1,10 +1,34 @@
-.wall-card {
-    animation: roll-in-top 1s ease-out both;
-    display: flex;
-    width:100vw;
-    justify-content: center;
+.one-schedule-global {
+    height: 100vh;
+    background-image: url("https://i.pinimg.com/originals/75/5c/57/755c576d50d64770a04e703402eddfc3.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.one-schedule-h1 {
+   text-align: center;
+   margin: 50% 0;
+}
+
+
+.one-schedule-main-container{
+    display: grid;
+    grid-template-columns: repeat(2, 20%);
+}
+
+.one-schedule-user-card {
+    margin-left: 10%;
     margin-top: 4%;
 }
+
+.one-schedule-wall-card {
+    animation: roll-in-top 1s ease-out both;
+    width:100vw;
+    margin-top: 4%;
+}
+
 
 @keyframes roll-in-top {
     0% {
