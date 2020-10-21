@@ -40,7 +40,7 @@ const NavMain = (props) => {
       .logout()
       .then(() => {
         context.removeUser();
-        window.location = "http://localhost:3000";
+        window.location = window.location.href;
       })
       .catch((error) => {
         console.log(error);
