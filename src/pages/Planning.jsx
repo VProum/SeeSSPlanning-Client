@@ -30,9 +30,10 @@ class Planning extends Component {
   constructor(props) {
     super(props);
 
-    
     this.handlefFormatSchedule = this.handlefFormatSchedule.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.changeColor = this.changeColor.bind(this);
+    let changingColor = null;
   }
 
   state = {
@@ -55,46 +56,58 @@ class Planning extends Component {
   }
 
   handleDelete(e) {
-    let donotmutate = [...this.state.filterStreamer]
-    donotmutate.splice(e.currentTarget.parentElement.id, 1)
+    let donotmutate = [...this.state.filterStreamer];
+    donotmutate.splice(e.currentTarget.parentElement.id, 1);
     this.setState({
-        filterStreamer: donotmutate
-    })
+      filterStreamer: donotmutate,
+    });
   }
 
   handleNothing = () => {
-   console.log("pouet");
-  }
-  
-  handlefFormatSchedule(){
+    console.log("pouet");
+  };
+
+  handlefFormatSchedule() {
     let scheduleListAll = [];
-   
+
     let filterStreamerTmp = [...this.state.filterStreamer];
 
-    filterStreamerTmp.map((item, index) =>{
-      for (const prop in item){
-        if(prop === "planningList" && item[prop].length > 0) {
-          for (const titi in item[prop]){
+    filterStreamerTmp.map((item, index) => {
+      for (const prop in item) {
+        if (prop === "planningList" && item[prop].length > 0) {
+          for (const titi in item[prop]) {
             scheduleListAll.push(item[prop][titi]);
           }
         }
       }
-    })
-   
+    });
+
     return scheduleListAll;
   }
 
+  changeColor(event, index) {
+    const colorValue = event.currentTarget.value;
+    clearTimeout(this.changingColor);
+    this.changingColor = setTimeout(() => {
+      let donotmutate = [...this.state.filterStreamer];
+      donotmutate[index].colorBackground = colorValue;
+      this.setState({
+        filterStreamer: donotmutate,
+      });
+    }, 200);
+    
+  }
 
   render() {
     this.handlefFormatSchedule();
-    const {user} = this.props.context;
+    const { user } = this.props.context;
     return (
       <Grid columns={1}>
-        <Grid.Column>
+        <Grid.Column style={{display: "flex"}}>
           <Checkbox
             toggle
             checked={this.state.visible}
-            label={{ children: <code>Show filter</code> }}
+            label={{ children: <code>Add Plannings</code> }}
             onChange={(e, data) => {
               this.setState({
                 dimmed: data.checked,
@@ -104,47 +117,50 @@ class Planning extends Component {
           />
 
           {this.state.filterStreamer.map((item, i) => (
-              <React.Fragment key={i}>
-              <Chip
-                avatar={<Avatar alt={item.nickname} src={item.avatar} />}
-                label={item.nickname}
-                onDelete={this.handleDelete}
-                id={i}
-                />
-            </React.Fragment>
+            <div key={i} style={{display: "flex",
+                                flexDirection: "column"}}>
+                  <Chip
+                    avatar={<Avatar alt={item.nickname} src={item.avatar} />}
+                    label={item.nickname}
+                    onDelete={this.handleDelete}
+                    id={i}
+                  />
+                  <input
+                    type="color"
+                    onChange={(event, index = i) => this.changeColor(event, index)}
+                  />
+            </div>
           ))}
         </Grid.Column>
-        
 
-         <Grid.Column>
+        <Grid.Column>
           <Sidebar.Pushable as={Segment}>
             <Sidebar
               as={Menu}
               animation="push"
               inverted
               onHide={() => {
-                  this.setState({
-                      dimmed: false,
-                      visible: false,
-                    });
-                }}
-                vertical
-                visible={this.state.visible}
-                width="thin"
-                >
+                this.setState({
+                  dimmed: false,
+                  visible: false,
+                });
+              }}
+              vertical
+              visible={this.state.visible}
+              width="thin"
+            >
               {this.state.followingStreamers.map((item, i) => (
-                  <Menu.Item
+                <Menu.Item
                   key={i}
                   index={i}
                   onClick={(e, data) => {
-                     
-                      let donotmutate = [...this.state.filterStreamer];
-                      donotmutate.push(this.state.followingStreamers[data.index]);
+                    let donotmutate = [...this.state.filterStreamer];
+                    donotmutate.push(this.state.followingStreamers[data.index]);
                     donotmutate = [...new Set(donotmutate)];
                     this.setState({
-                        filterStreamer: donotmutate,
+                      filterStreamer: donotmutate,
                     });
-                }}
+                  }}
                 >
                   <Image src={item.avatar} alt="toto" avatar />
                   <span>{item.nickname}</span>
@@ -152,15 +168,18 @@ class Planning extends Component {
               ))}
             </Sidebar>
 
-            <Sidebar.Pusher dimmed={this.state.dimmed}>
+            <Sidebar.Pusher dimmed={this.state.dimmed} style={{backgroundColor: "#442D6B" }}>
               {/* <Segment basic>
                 <Header as="h3">Application Content</Header>
                 <Image src="https://static-cdn.jtvnw.net/jtv_user_pictures/9b1e0ea9-6dd0-40c1-b255-3f3cea8d1814-profile_image-300x300.png" />
               </Segment> */}
-              <FormDisplaySchedule deleteSchedule={this.handleNothing} schedule_list={this.handlefFormatSchedule()} /> 
+              <FormDisplaySchedule
+                deleteSchedule={this.handleNothing}
+                schedule_list={this.handlefFormatSchedule()}
+              />
             </Sidebar.Pusher>
           </Sidebar.Pushable>
-        </Grid.Column> 
+        </Grid.Column>
       </Grid>
     );
   }

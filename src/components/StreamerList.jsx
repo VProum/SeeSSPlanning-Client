@@ -25,15 +25,17 @@ const StreamerList = (props) => {
 
   const divStyle = {
     marginLeft: props.isDelete? "10vw": "0",
-    marginTop: "3vh",
     width: props.isDelete? "90vw":"100vw",
-    height: "95vh"
+    height: "98vh"
   };
 
   return (
     <div className="streamer-list" style={divStyle}>
       {props.userList.map((item, i) => (
-        <Card key={i} color='teal'>
+        <Card key={i} color='teal' 
+        style ={{height: "250px",
+                 width:"175px" }}
+        >
           <Image src={item.avatar} wrapped ui={false} alt="blurry" />
           <Card.Content style={{background: "#e6ddf0"}}>
             <Card.Header>{item.nickname}</Card.Header>
@@ -41,7 +43,6 @@ const StreamerList = (props) => {
             <Icon name="users" />
             {item.nb_followers} followers
           
-            </Card.Content>
           {props.isDelete && 
             <Button
             color="primary"
@@ -51,6 +52,7 @@ const StreamerList = (props) => {
             id={i}
             >remove
                </Button>}
+            </Card.Content>
         </Card>
 
         // <div key={"toto"+i}>
