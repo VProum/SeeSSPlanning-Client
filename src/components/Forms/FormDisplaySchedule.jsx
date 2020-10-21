@@ -25,7 +25,7 @@ class FormDisplaySchedule extends React.Component {
     schedule_list: this.props.schedule_list,
   };
 
-  handleScheduleFormat = (value) => {
+  handleScheduleFormat = (schedule_list) => {
     let formatPlanning = {
       Monday: [],
       Tuesday: [],
@@ -36,10 +36,12 @@ class FormDisplaySchedule extends React.Component {
       Sunday: [],
     };
 
-    value.map((schedule) => {
-      for (const prop in formatPlanning) {
-        if (prop === schedule.weekday) {
-          formatPlanning[prop].push(schedule);
+
+    //sort in each array, the schedule list by day type 
+    schedule_list.map((schedule) => {
+      for (const day in formatPlanning) {
+        if (day === schedule.weekday) {
+          formatPlanning[day].push(schedule);
         }
       }
     });
@@ -56,10 +58,10 @@ class FormDisplaySchedule extends React.Component {
       return comparison;
     }
 
+    //sort by hour time for each day
     for (const prop in formatPlanning) {
       formatPlanning[prop].sort(compare);
     }
-
     return formatPlanning;
   };
 
@@ -79,32 +81,49 @@ class FormDisplaySchedule extends React.Component {
 
     if (!user) return <CircularProgress />;
 
-    const cardStyle = {
-      backgroundColor: this.props.colorBackground ? this. props.colorBackground : "#342450",
-      color: "white",
-      display: "flex",
-      flexDirection: "column",
-      marginRight: "20%",
-    };
+    let cardStyle;
+    if (this.props.schedule_list.length > 0) {
+      cardStyle = {
+        //backgroundColor: this.props.schedule_list[0].colorBackground ? this.props.schedule_list[0].colorBackground : "#342450",
+        color: "white",
+        display: "flex",
+        flexDirection: "column",
+        marginRight: "20%",
+      };
+    }
 
+    console.log("uhfviquehdbouhr", this.props.schedule_list);
+    console.log("qfhvmjqnfmilghqimurshgilmuRHG", scheduleObj)
     return (
       <div
-        style={{ marginTop: "7%", backgroundColor: "#17111e", color: "whitesmoke" }}
+        style={{
+          marginTop: "7%",
+          backgroundColor: "#17111e",
+          color: "whitesmoke",
+        }}
       >
         <h1>Planning week</h1>
         <ul className="pouet">
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
             <li key={index} className="form-display-schedule-line-row">
               <div style={{ width: "12vw" }}>
-                {" "}
-                <strong>{weekDay}</strong>{" "}
+                <strong>{weekDay}</strong>
               </div>
               {scheduleList.map((schedule, i) => (
                 <div key={i} className="fliptheCard">
                   <Card.Group className="main-card">
-                    <Card style={
-                      cardStyle
-                      }>
+                    <Card
+                      style={{
+                        backgroundColor: schedule
+                          .colorBackground
+                          ? schedule.colorBackground
+                          : "#342450",
+                        color: "white",
+                        display: "flex",
+                        flexDirection: "column",
+                        marginRight: "20%",
+                      }}
+                    >
                       <Link to={`/user/planning/${schedule.streamer_id}`}>
                         <Card.Content>
                           <Image

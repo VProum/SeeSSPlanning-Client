@@ -39,22 +39,39 @@ class Planning extends Component {
   state = {
     followingStreamers: [],
     filterStreamer: [],
+    scheduleList: [],
     visible: false,
     dimmed: false,
   };
-
+  
   async componentDidMount() {
     const donotmutate = await apiHandler.getUserFollow();
     //console.log("EditUser did mount", donotmutate);
     let donotmutatefiltered = [...donotmutate];
     //donotmutatefiltered.filter(item => item.planningList.length > 0);
-
+    
     this.setState({
       followingStreamers: donotmutate,
       filterStreamer: donotmutatefiltered,
     });
-  }
 
+    let scheduleListAll = [];
+    let filterStreamerTmp = [...donotmutatefiltered];
+
+    filterStreamerTmp.map(streamer => {
+        
+        if ( streamer.planningList.length > 0) {
+          streamer.planningList.map(planningitem => {
+            planningitem.colorBackground = "#342450";
+            scheduleListAll.push(planningitem);
+          });
+        }
+      
+      //console.log(scheduleListAll)
+    });
+    this.setState({scheduleList : scheduleListAll});
+  }
+  
   handleDelete(e) {
     let donotmutate = [...this.state.filterStreamer];
     donotmutate.splice(e.currentTarget.parentElement.id, 1);
@@ -74,6 +91,7 @@ class Planning extends Component {
 
     filterStreamerTmp.map((item, index) => {
       for (const prop in item) {
+        //console.log("\r\nprop ", prop, "item ", item, "item[prop]", item[prop], "\r\n" )
         if (prop === "planningList" && item[prop].length > 0) {
           for (const titi in item[prop]) {
             scheduleListAll.push(item[prop][titi]);
@@ -82,24 +100,41 @@ class Planning extends Component {
       }
     });
 
+    this.setState({scheduleList : scheduleListAll});
     return scheduleListAll;
   }
 
   changeColor(event, index) {
     const colorValue = event.currentTarget.value;
+    let scheduleListAll = [];
+
     clearTimeout(this.changingColor);
+    
     this.changingColor = setTimeout(() => {
       let donotmutate = [...this.state.filterStreamer];
       donotmutate[index].colorBackground = colorValue;
       this.setState({
         filterStreamer: donotmutate,
       });
+
+      donotmutate.map((streamer,i) => {
+        if ( streamer.planningList.length > 0) {
+          streamer.planningList.map((planningitem, j) => {
+            console.log(donotmutate[index].nickname, planningitem.streamer_name[0], donotmutate[index].nickname === planningitem.streamer_name[0])
+            if(donotmutate[index].nickname === planningitem.streamer_name[0]){
+              planningitem.colorBackground = colorValue;
+            } 
+            scheduleListAll.push(planningitem);
+          });
+        }
+      
+      });
+      console.log("bfkjoi",scheduleListAll)
+    this.setState({scheduleList : scheduleListAll});
     }, 200);
-    
   }
 
   render() {
-    this.handlefFormatSchedule();
     const { user } = this.props.context;
     return (
       <Grid columns={1}>
@@ -175,7 +210,7 @@ class Planning extends Component {
               </Segment> */}
               <FormDisplaySchedule
                 deleteSchedule={this.handleNothing}
-                schedule_list={this.handlefFormatSchedule()}
+                schedule_list={this.state.scheduleList}
               />
             </Sidebar.Pusher>
           </Sidebar.Pushable>
