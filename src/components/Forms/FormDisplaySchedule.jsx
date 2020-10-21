@@ -34,7 +34,11 @@ function hexToRgb(hex) {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
-  } : null;
+  } : {
+    r: 0,
+    g: 0,
+    b: 0
+  };
 }
 
 function isLight(rgb) {
@@ -123,7 +127,6 @@ class FormDisplaySchedule extends React.Component {
                 <strong>{weekDay}</strong>
               </div>
               {scheduleList.map((schedule, i) => {
-                let lumos = isLight(hexToRgb(schedule.colorBackground))? "white":"black";
                 return (
                 <div key={i} className="fliptheCard">
                   <Card.Group className="main-card">

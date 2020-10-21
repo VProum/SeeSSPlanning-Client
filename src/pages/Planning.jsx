@@ -129,7 +129,7 @@ class Planning extends Component {
         }
       
       });
-      console.log("bfkjoi",scheduleListAll)
+      //console.log("bfkjoi",scheduleListAll)
     this.setState({scheduleList : scheduleListAll});
     }, 200);
   }
