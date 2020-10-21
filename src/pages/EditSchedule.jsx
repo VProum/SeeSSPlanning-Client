@@ -43,13 +43,13 @@ class EditSchedule extends Component {
     const { user } = this.props.context; 
     if (!user) return <CircularProgress />;
     return (
-      <div>
+      <div >
         <h1>Schedule your stream</h1>
-        <div className="edit-schedule-container">
+        <div className="edit-schedule-container" >
           <FormEditSchedule addSchedule={this.handleAdd} />
           {/* schedule_list={this.state.schedule_list} /> */}
-          <FormDisplayStreamer />
-          <div style={{width:"70vW"}}>
+          {/* <FormDisplayStreamer /> */}
+          <div style={{width:"100vW"}}>
               <FormDisplaySchedule deleteSchedule={this.handleDelete} isdelete schedule_list={this.state.schedule_list} /> 
           </div>
         </div>

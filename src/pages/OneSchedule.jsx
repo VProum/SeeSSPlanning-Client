@@ -2,7 +2,7 @@ import React from 'react';
 import UserContext from "../components/Auth/UserContext";
 import apiHandler from "../api/apiHandler";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import "../styles/OnSchedule.css";
 
  class OneSchedule extends React.Component {
     static contextType = UserContext;
@@ -23,7 +23,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
         return (
             <div>
                 <h1>See planning, next stream?</h1>
-                <div>
+                <div className="wall-card">
                   
                         {this.state.streamerFiltered && (
                             <div>

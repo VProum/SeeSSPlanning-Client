@@ -86,13 +86,23 @@ class EditSchedule extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
+
+    if(!this.state.schedule_obj.image){
+      
+    }
+
+    if(this.props.context.user[0].planning_image){
+      console.log(this.props.context.user[0].planning_image, "<<<<<<<<<<<<");
+    } else {
+      console.log("no picture?")
+    }
+
     const fd = new FormData();
 
     for (const key in this.state.schedule_obj) {
         if(this.state.schedule_obj[key]){
             fd.append(key, this.state.schedule_obj[key]);
-        }
-      
+        }      
     }
 
     apiHandler
@@ -113,7 +123,7 @@ class EditSchedule extends React.Component {
   handleImgChange = (e) => {
     //const name = e.target.name;
     const value =  e.target.files[0];
-   
+
     this.setState((prevState) => ({ 
       image: value,
       schedule_obj: { ...prevState.schedule_obj, image: value },
@@ -176,8 +186,9 @@ class EditSchedule extends React.Component {
 
     const {user} = this.props.context;
 
+    
     return (
-      <div className={`${classes.root} margin-left`} >
+      <div className={`${classes.root} margin-left`}>
         Add a stream in schedule
         <br />
         <form className={classes.root} onSubmit={this.handleSubmit}>

@@ -90,7 +90,7 @@ class FormDisplaySchedule extends React.Component {
                 <strong>{weekDay}</strong>{" "}
               </div>
               {scheduleList.map((schedule, i) => (
-                <div key={i}>
+                <div key={i} className="fliptheCard">
                   <Card.Group >
                     <Card style={{backgroundColor: "#342450", color: "white",  display:"flex", flexDirection:"column", marginRight: "20%" }}> 
                       <Card.Content>

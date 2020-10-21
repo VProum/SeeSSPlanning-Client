@@ -1,0 +1,18 @@
+.wall-card {
+    animation: roll-in-top 1s ease-out both;
+    display: flex;
+    width:100vw;
+    justify-content: center;
+    margin-top: 4%;
+}
+
+@keyframes roll-in-top {
+    0% {
+      transform: translateX(-800px) rotate(-540deg);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) rotate(0deg);
+      opacity: 1;
+    }
+  }
