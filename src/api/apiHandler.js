@@ -59,7 +59,7 @@ export default {
     },
 
     testPouet() {
-        return service.get("https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=http://localhost:8080&response_type=token&scope=user:read:email+moderation:read").then(apires => console.log(apires));
+        return service.get(`https://id.twitch.tv/oauth2/authorize?client_id=m3vo1t7dvgtkfb9korsfpzlgjrh5vk&redirect_uri=${process.env.REACT_APP_BACKEND_URL}&response_type=token&scope=user:read:email+moderation:read`).then(apires => console.log(apires));
     },
 
     getStreamer() {
@@ -105,9 +105,9 @@ export default {
             .catch(errorHandler);
     },
 
-    getUserPlanning(id){
+    getUserPlanning(id) {
         return service
-            .get("/user/planning/"+ id)
+            .get("/user/planning/" + id)
             .then((res) => res.data)
             .catch(errorHandler)
     },
