@@ -115,7 +115,6 @@ export default {
     ///// Schedule part
 
     createScheduleOne(data) {
-        console.log(data);
         return service.post("/schedule/create", data)
             .then((res) => res.data)
     },

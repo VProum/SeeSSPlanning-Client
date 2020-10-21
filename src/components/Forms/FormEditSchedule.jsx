@@ -188,7 +188,7 @@ class EditSchedule extends React.Component {
 
     
     return (
-      <div className={`${classes.root} margin-left`}>
+      <div className={`${classes.root}`} style={{marginTop: "2%", marginLeft: "2%"}}>
         Add a stream in schedule
         <br />
         <form className={classes.root} onSubmit={this.handleSubmit}>
@@ -242,7 +242,9 @@ class EditSchedule extends React.Component {
               <MenuItem value="Sunday">Sunday</MenuItem>
             </Select>
             <br />
-      <p style={{marginTop:"2%", marginBottom:"2%"}}> Upload your planning </p>
+            <div>
+
+      <p style={{marginTop:"2%", marginBottom: "1%"}}> Upload your planning </p>
        <input
         accept="image/*"
         className={classes.input}
@@ -259,6 +261,7 @@ class EditSchedule extends React.Component {
         </Button>
 
       </label>
+            </div>
 
           </FormControl>
 

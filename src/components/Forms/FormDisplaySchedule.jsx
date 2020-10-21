@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+
 const useStyles = (theme) => ({
   root: {
     display: "flex",
@@ -102,6 +103,7 @@ class FormDisplaySchedule extends React.Component {
   };
 
   componentDidMount() {
+    
     this.setState({ schedule_list: this.props.schedule_list });
   }
 
@@ -119,11 +121,11 @@ class FormDisplaySchedule extends React.Component {
         color: "whitesmoke",
       }}
       >
-        <h1>Planning week</h1>
+        <h1 style={{marginLeft: "2%"}}>Planning week</h1>
         <ul className="form-display-card" >
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
             <li key={index} className="form-display-schedule-line-row">
-              <div >
+              <div className="form-display-schedule-weekday">
                 <strong>{weekDay}</strong>
               </div>
               {scheduleList.map((schedule, i) => {
@@ -148,13 +150,13 @@ class FormDisplaySchedule extends React.Component {
                             floated="right"
                             size="mini"
                             src={schedule.avatar}
-                            alt="titi"
+                            alt="avatar"
                           />
 
                           <Card.Header style={{ color: isLight(hexToRgb(schedule.colorBackground))? "white":"black" }}>
                             {schedule.hour_day}
                             <br />
-                            {schedule.hour_day}
+                            {schedule.calcDuration}
                           </Card.Header>
                           <Card.Meta></Card.Meta>
                           <Card.Description></Card.Description>

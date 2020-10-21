@@ -22,7 +22,6 @@ class OneSchedule extends React.Component {
     apiHandler
       .getUserPlanning(this.props.match.params.id)
       .then((apiRes) => {
-        console.log(apiRes);
         this.setState({
           streamerFiltered: apiRes[0],
         });
@@ -33,7 +32,6 @@ class OneSchedule extends React.Component {
   }
 
   render() {
-    console.log(this.state.streamerFiltered);
 
     return (
       <div className="one-schedule-global">
