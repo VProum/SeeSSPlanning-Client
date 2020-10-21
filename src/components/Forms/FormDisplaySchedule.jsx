@@ -20,6 +20,32 @@ const useStyles = (theme) => ({
   },
 });
 
+
+function formatToHex(r, g, b) {
+  let rHex = r < 10 ? "0" + r.toString(16) : r.toString(16);
+  let gHex = g < 10 ? "0" + g.toString(16) : g.toString(16);
+  let bHex = b < 10 ? "0" + b.toString(16) : b.toString(16);
+  return "#" + rHex + gHex + bHex;
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
+function isLight(rgb) {
+  let luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
+  if (luminance > 0.5) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 class FormDisplaySchedule extends React.Component {
   state = {
     schedule_list: this.props.schedule_list,
@@ -84,10 +110,10 @@ class FormDisplaySchedule extends React.Component {
     // console.log("qfhvmjqnfmilghqimurshgilmuRHG", scheduleObj)
     return (
       <div
-        style={{
-          backgroundColor: "#17111e",
-          color: "whitesmoke",
-        }}
+      style={{
+        backgroundColor: "#17111e",
+        color: "whitesmoke",
+      }}
       >
         <h1>Planning week</h1>
         <ul className="form-display-card" >
@@ -96,7 +122,9 @@ class FormDisplaySchedule extends React.Component {
               <div >
                 <strong>{weekDay}</strong>
               </div>
-              {scheduleList.map((schedule, i) => (
+              {scheduleList.map((schedule, i) => {
+                let lumos = isLight(hexToRgb(schedule.colorBackground))? "white":"black";
+                return (
                 <div key={i} className="fliptheCard">
                   <Card.Group className="main-card">
                     <Card
@@ -105,7 +133,6 @@ class FormDisplaySchedule extends React.Component {
                           .colorBackground
                           ? schedule.colorBackground
                           : "#342450",
-                        color: "white",
                         display: "flex",
                         flexDirection: "column",
                         marginRight: "20%",
@@ -121,7 +148,7 @@ class FormDisplaySchedule extends React.Component {
                             alt="titi"
                           />
 
-                          <Card.Header style={{ color: "whitesmoke" }}>
+                          <Card.Header style={{ color: isLight(hexToRgb(schedule.colorBackground))? "white":"black" }}>
                             {schedule.hour_day}
                             <br />
                             {schedule.hour_day}
@@ -147,7 +174,7 @@ class FormDisplaySchedule extends React.Component {
                     </Card>
                   </Card.Group>
                 </div>
-              ))}
+              )})}
             </li>
           ))}
         </ul>
