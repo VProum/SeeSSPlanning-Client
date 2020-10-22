@@ -23,8 +23,8 @@ const StreamerList = (props) => {
 
   const divStyle = {
     marginLeft:  "15px",
-    width: props.isDelete? "90vw":"100vw",
-    height: "98vh"
+    width: props.isDelete? "80vw":"100vw",
+    height: "90vh"
   };
 
   return (

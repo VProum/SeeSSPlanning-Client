@@ -30,6 +30,28 @@ const useStyles = (theme) => ({
   },
 });
 
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : {
+    r: 0,
+    g: 0,
+    b: 0
+  };
+}
+
+function isLight(rgb) {
+  let luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
+  if (luminance > 0.5) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 class Planning extends Component {
   constructor(props) {
     super(props);
@@ -142,7 +164,7 @@ class Planning extends Component {
     const { user } = this.props.context;
     return (
       <Grid columns={1}>
-        <Grid.Column style={{display: "flex", backgroundColor: "#8877a6"}}>
+        <Grid.Column style={{display: "flex", flexWrap: "wrap", backgroundColor: "#8877a6"}}>
           <Checkbox
             toggle
             checked={this.state.visible}
@@ -163,11 +185,15 @@ class Planning extends Component {
                     label={item.nickname}
                     onDelete={this.handleDelete}
                     id={i}
-                  
+                    onClick={() => document.getElementById(item.nickname).click()}
+                    style={{backgroundColor: item.colorBackground ? item.colorBackground : "#442d6b",
+                     color: isLight(hexToRgb(item.colorBackground))? "white":"black" }}
                   />
                   <input
                     type="color"
+                    id={item.nickname}
                     onChange={(event, index = i) => this.changeColor(event, index)}
+                    hidden
                   />
             </div>
           ))}
