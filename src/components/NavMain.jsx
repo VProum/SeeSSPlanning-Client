@@ -74,18 +74,18 @@ const NavMain = (props) => {
               <HomeIcon />
             </NavLink>
           </IconButton>
-          <Typography variant="h7" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             <NavLink exact to="/planning">
-              {user && <span style={{ marginRight: "3%" }}>Planning</span>}
+              {user && <span style={{ marginRight: "3%" }}>See Plannings</span>}
             </NavLink>
             <NavLink exact to="/schedule/edit">
               {user && user[0].isStreamer && (
-                <span style={{ marginRight: "3%" }}>Schedule</span>
+                <span style={{ marginRight: "3%" }}>Schedule a Stream</span>
               )}
             </NavLink>
             <NavLink exact to="/user/edit">
               {user && (
-                <span style={{ marginRight: "3%" }}>{user[0].nickname}</span>
+                <span style={{ marginRight: "3%" }}>Add Streamer to Monitor</span>
               )}
             </NavLink>
           </Typography>
