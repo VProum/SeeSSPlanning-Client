@@ -73,6 +73,9 @@ export default class AddStreamer extends Component {
               vertical
               width="thin"
             >
+              <Menu.Item>
+                Click to Add Streamer
+              </Menu.Item>
               {this.state.streamer_list.map((item, i) => (
                 <Menu.Item
                   key={i}
@@ -84,7 +87,12 @@ export default class AddStreamer extends Component {
                 </Menu.Item>
               ))}
             </Sidebar>
-            <Sidebar.Pusher dimmed={this.state.dimmed} style={{backgroundColor: "#442d6b" }}>
+            <Sidebar.Pusher dimmed={this.state.dimmed} style={{backgroundColor: "#442d6b",
+                                                              backgroundImage: 'url("https://i.pinimg.com/originals/75/5c/57/755c576d50d64770a04e703402eddfc3.jpg")',
+                                                              backgroundAttachment: "fixed",
+                                                              backgroundPosition: "center",
+                                                              backgroundRepeat: "no-repeat",
+                                                              backgroundSize: "cover" }}>
             <StreamerDetail />
             <StreamerList
             userList={this.props.userList}

@@ -190,7 +190,7 @@ class EditSchedule extends React.Component {
 
     
     return (
-      <div className={`${classes.root}`} style={{marginTop: "2%", marginLeft: "2%"}}>
+      <div className={`${classes.root}`} style={{marginTop: "2%", marginLeft: "2%", fontSize:"1.3rem"}}>
         Add a stream in schedule
         <br />
         <form className={classes.root} onSubmit={this.handleSubmit}>
@@ -247,7 +247,7 @@ class EditSchedule extends React.Component {
             <br />
             <div>
 
-      <p style={{marginTop:"2%", marginBottom: "1%"}}> Add your own weekly planning image  </p>
+      <p style={{marginTop:"2%", marginBottom: "1%", fontSize:"1.3rem"}}> Add your own weekly planning image  </p>
        <input
         accept="image/*"
         className={classes.input}

@@ -33,7 +33,7 @@ class OneSchedule extends React.Component {
 
     return (
       <div className="one-schedule-global">
-        <h1 style={{textAlign: "center", color:"whitesmoke", marginBottom: "2%"}}>{this.state.streamerFiltered.nickname}'s schedule </h1>
+        <h1 style={{fontSize:"3em", textAlign: "center", color:"whitesmoke", marginBottom: "2%",textShadow: "1px 1px 2px black, 0 0 25px white"}}>{this.state.streamerFiltered.nickname}'s schedule </h1>
         <div className="one-schedule-main-container">
           <div className="one-schedule-user-card">
              <Link to={{ pathname: `https://www.twitch.tv/${this.state.streamerFiltered.nickname}` }} target="_blank" >

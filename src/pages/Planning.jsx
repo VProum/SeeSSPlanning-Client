@@ -5,10 +5,11 @@ import Chip from "@material-ui/core/Chip";
 import { withStyles } from "@material-ui/core/styles";
 import FormDisplaySchedule from "../components/Forms/FormDisplaySchedule";
 import { withUser } from "../components/Auth/withUser";
+import { Link } from "react-router-dom";
 import {
   Checkbox,
   Grid,
-  Header,
+  Icon,
   Image,
   Menu,
   Segment,
@@ -22,11 +23,10 @@ const useStyles = (theme) => ({
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(0.5),
-      "& .MuiChip-deleteIcon"  :{
+      "& .MuiChip-deleteIcon": {
         backgroundColor: "primary",
-      }
+      },
     },
-    
   },
 });
 
@@ -164,48 +164,67 @@ class Planning extends Component {
         <Grid.Column
           style={{
             display: "flex",
-            flexWrap: "wrap",
             backgroundColor: "#8877a6",
           }}
         >
-          <Checkbox
-            toggle
-            checked={this.state.visible}
-            label={{ children: <code>Add Plannings</code> }}
-            onChange={(e, data) => {
+          <div
+            style={{
+              padding: "10px 30px",
+              margin: "auto 0",
+              width: "170px",
+              height: "40px",
+              color: "whitesmoke",
+              fontWeight: "bolder",
+              border: "1px solid whitesmoke",
+              borderRadius: "50px",
+            }}
+            onClick={() => {
               this.setState({
-                dimmed: data.checked,
-                visible: data.checked,
+                dimmed: !this.state.dimmed,
+                visible: !this.state.visible,
               });
             }}
-          />
+          >
+            <Icon name="add user"></Icon>
+            <span>Add Streamer</span>
+          </div>
 
-          {this.state.filterStreamer.map((item, i) => (
-            <div key={i} style={{ display: "flex", flexDirection: "column" }}>
-              <Chip
-              variant= "outlined"
-                avatar={<Avatar alt={item.nickname} src={item.avatar} />}
-                label={item.nickname}
-                onDelete={this.handleDelete}
-                id={i}
-                onClick={() => document.getElementById(item.nickname).click()}
-                style={{
-                  backgroundColor: item.colorBackground
-                    ? item.colorBackground
-                    : "#442d6b",
-                  color: isLight(hexToRgb(item.colorBackground))
-                    ? "white"
-                    : "black",
-                }}
-              />
-              <input
-                type="color"
-                id={item.nickname}
-                onChange={(event, index = i) => this.changeColor(event, index)}
-                hidden
-              />
-            </div>
-          ))}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              backgroundColor: "#8877a6",
+            }}
+          >
+            {this.state.filterStreamer.map((item, i) => (
+              <div key={i} style={{ display: "flex", flexDirection: "column" }}>
+                <Chip
+                  variant="outlined"
+                  avatar={<Avatar alt={item.nickname} src={item.avatar} />}
+                  label={item.nickname}
+                  onDelete={this.handleDelete}
+                  id={i}
+                  onClick={() => document.getElementById(item.nickname).click()}
+                  style={{
+                    backgroundColor: item.colorBackground
+                      ? item.colorBackground
+                      : "#442d6b",
+                    color: isLight(hexToRgb(item.colorBackground))
+                      ? "white"
+                      : "black",
+                  }}
+                />
+                <input
+                  type="color"
+                  id={item.nickname}
+                  onChange={(event, index = i) =>
+                    this.changeColor(event, index)
+                  }
+                  hidden
+                />
+              </div>
+            ))}
+          </div>
         </Grid.Column>
 
         <Grid.Column style={{ padding: "0px" }}>
@@ -224,6 +243,9 @@ class Planning extends Component {
               visible={this.state.visible}
               width=""
             >
+              <Link to={`/user/edit`}>
+                <Menu.Item>Click to Add Streamer's Schedule</Menu.Item>
+              </Link>
               {this.state.followingStreamers.map((item, i) => (
                 <Menu.Item
                   key={i}
