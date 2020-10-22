@@ -6,3 +6,61 @@
     background-size: cover;
     color: whitesmoke;
 }
+
+.landing {
+    height: 100vh;
+    background-image: url("/styley.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-focus-in {
+    animation: text-focus-in 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    font-size: 3.5em;
+    justify-content: center;
+    line-height: 95%;
+}
+
+.sub-title {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 1.5em;
+}
+
+.landing-btn {
+    border: 1px solid dodgerblue;
+    border-radius: 15px;
+    padding: 5px;
+    background-color: teal;
+}
+
+.poti-card {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #cdbce1;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+}
+
+.showall h1 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+@keyframes text-focus-in {
+    0% {
+        filter: blur(12px);
+        opacity: 0;
+    }
+    100% {
+        filter: blur(0px);
+        opacity: 1;
+    }
+}

@@ -22,13 +22,6 @@ const useStyles = (theme) => ({
 });
 
 
-function formatToHex(r, g, b) {
-  let rHex = r < 10 ? "0" + r.toString(16) : r.toString(16);
-  let gHex = g < 10 ? "0" + g.toString(16) : g.toString(16);
-  let bHex = b < 10 ? "0" + b.toString(16) : b.toString(16);
-  return "#" + rHex + gHex + bHex;
-}
-
 function hexToRgb(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {

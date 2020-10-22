@@ -28,15 +28,17 @@ const useStyles = (theme) => ({
 
 function hexToRgb(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : {
-    r: 0,
-    g: 0,
-    b: 0
-  };
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : {
+        r: 0,
+        g: 0,
+        b: 0,
+      };
 }
 
 function isLight(rgb) {
@@ -51,8 +53,6 @@ function isLight(rgb) {
 class Planning extends Component {
   constructor(props) {
     super(props);
-
-    this.handlefFormatSchedule = this.handlefFormatSchedule.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.changeColor = this.changeColor.bind(this);
     let changingColor = null;
@@ -65,13 +65,13 @@ class Planning extends Component {
     visible: false,
     dimmed: false,
   };
-  
+
   async componentDidMount() {
     const donotmutate = await apiHandler.getUserFollow();
     //console.log("EditUser did mount", donotmutate);
     let donotmutatefiltered = [...donotmutate];
     //donotmutatefiltered.filter(item => item.planningList.length > 0);
-    
+
     this.setState({
       followingStreamers: donotmutate,
       filterStreamer: donotmutatefiltered,
@@ -80,58 +80,52 @@ class Planning extends Component {
     let scheduleListAll = [];
     let filterStreamerTmp = [...donotmutatefiltered];
 
-    filterStreamerTmp.map(streamer => {
-        
-        if ( streamer.planningList.length > 0) {
-          streamer.planningList.map(planningitem => {
-            planningitem.colorBackground = "#342450";
-            scheduleListAll.push(planningitem);
-          });
-        }
-      
+    filterStreamerTmp.map((streamer) => {
+      if (streamer.planningList.length > 0) {
+        streamer.planningList.map((planningitem) => {
+          planningitem.colorBackground = "#342450";
+          scheduleListAll.push(planningitem);
+        });
+      }
+
       //console.log(scheduleListAll)
     });
-    this.setState({scheduleList : scheduleListAll});
+    this.setState({ scheduleList: scheduleListAll });
   }
-  
+
   handleDelete(e) {
     let donotmutate = [...this.state.filterStreamer];
     donotmutate.splice(e.currentTarget.parentElement.id, 1);
     this.setState({
       filterStreamer: donotmutate,
     });
+
+    let scheduleListAll = [];
+    let filterStreamerTmp = [...donotmutate];
+
+    filterStreamerTmp.map((streamer) => {
+      if (streamer.planningList.length > 0) {
+        streamer.planningList.map((planningitem) => {
+          planningitem.colorBackground = "#342450";
+          scheduleListAll.push(planningitem);
+        });
+      }
+
+      //console.log(scheduleListAll)
+    });
+    this.setState({ scheduleList: scheduleListAll });
   }
 
   handleNothing = () => {
     console.log("pouet");
   };
 
-  handlefFormatSchedule() {
-    let scheduleListAll = [];
-
-    let filterStreamerTmp = [...this.state.filterStreamer];
-
-    filterStreamerTmp.map((item, index) => {
-      for (const prop in item) {
-        //console.log("\r\nprop ", prop, "item ", item, "item[prop]", item[prop], "\r\n" )
-        if (prop === "planningList" && item[prop].length > 0) {
-          for (const titi in item[prop]) {
-            scheduleListAll.push(item[prop][titi]);
-          }
-        }
-      }
-    });
-
-    this.setState({scheduleList : scheduleListAll});
-    return scheduleListAll;
-  }
-
   changeColor(event, index) {
     const colorValue = event.currentTarget.value;
     let scheduleListAll = [];
 
     clearTimeout(this.changingColor);
-    
+
     this.changingColor = setTimeout(() => {
       let donotmutate = [...this.state.filterStreamer];
       donotmutate[index].colorBackground = colorValue;
@@ -139,20 +133,23 @@ class Planning extends Component {
         filterStreamer: donotmutate,
       });
 
-      donotmutate.map((streamer,i) => {
-        if ( streamer.planningList.length > 0) {
+      donotmutate.map((streamer, i) => {
+        if (streamer.planningList.length > 0) {
           streamer.planningList.map((planningitem, j) => {
-            console.log(donotmutate[index].nickname, planningitem.streamer_name[0], donotmutate[index].nickname === planningitem.streamer_name[0])
-            if(donotmutate[index].nickname === planningitem.streamer_name[0]){
+            console.log(
+              donotmutate[index].nickname,
+              planningitem.streamer_name[0],
+              donotmutate[index].nickname === planningitem.streamer_name[0]
+            );
+            if (donotmutate[index].nickname === planningitem.streamer_name[0]) {
               planningitem.colorBackground = colorValue;
-            } 
+            }
             scheduleListAll.push(planningitem);
           });
         }
-      
       });
       //console.log("bfkjoi",scheduleListAll)
-    this.setState({scheduleList : scheduleListAll});
+      this.setState({ scheduleList: scheduleListAll });
     }, 200);
   }
 
@@ -160,7 +157,13 @@ class Planning extends Component {
     const { user } = this.props.context;
     return (
       <Grid columns={1}>
-        <Grid.Column style={{display: "flex", flexWrap: "wrap", backgroundColor: "#8877a6"}}>
+        <Grid.Column
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            backgroundColor: "#8877a6",
+          }}
+        >
           <Checkbox
             toggle
             checked={this.state.visible}
@@ -174,29 +177,35 @@ class Planning extends Component {
           />
 
           {this.state.filterStreamer.map((item, i) => (
-            <div key={i} style={{display: "flex",
-                                flexDirection: "column"}}>
-                  <Chip
-                    avatar={<Avatar alt={item.nickname} src={item.avatar} />}
-                    label={item.nickname}
-                    onDelete={this.handleDelete}
-                    id={i}
-                    onClick={() => document.getElementById(item.nickname).click()}
-                    style={{backgroundColor: item.colorBackground ? item.colorBackground : "#442d6b",
-                     color: isLight(hexToRgb(item.colorBackground))? "white":"black" }}
-                  />
-                  <input
-                    type="color"
-                    id={item.nickname}
-                    onChange={(event, index = i) => this.changeColor(event, index)}
-                    hidden
-                  />
+            <div key={i} style={{ display: "flex", flexDirection: "column" }}>
+              <Chip
+              variant= "outlined"
+                avatar={<Avatar alt={item.nickname} src={item.avatar} />}
+                label={item.nickname}
+                onDelete={this.handleDelete}
+                id={i}
+                onClick={() => document.getElementById(item.nickname).click()}
+                style={{
+                  backgroundColor: item.colorBackground
+                    ? item.colorBackground
+                    : "#442d6b",
+                  color: isLight(hexToRgb(item.colorBackground))
+                    ? "white"
+                    : "black",
+                }}
+              />
+              <input
+                type="color"
+                id={item.nickname}
+                onChange={(event, index = i) => this.changeColor(event, index)}
+                hidden
+              />
             </div>
           ))}
         </Grid.Column>
 
-        <Grid.Column style={{padding: "0px"}}>
-          <Sidebar.Pushable as={Segment} style={{height: "100vh"}}>
+        <Grid.Column style={{ padding: "0px" }}>
+          <Sidebar.Pushable as={Segment} style={{ height: "100vh" }}>
             <Sidebar
               as={Menu}
               animation="push"
@@ -222,6 +231,20 @@ class Planning extends Component {
                     this.setState({
                       filterStreamer: donotmutate,
                     });
+                    let scheduleListAll = [];
+                    let filterStreamerTmp = [...donotmutate];
+
+                    filterStreamerTmp.map((streamer) => {
+                      if (streamer.planningList.length > 0) {
+                        streamer.planningList.map((planningitem) => {
+                          planningitem.colorBackground = "#342450";
+                          scheduleListAll.push(planningitem);
+                        });
+                      }
+
+                      //console.log(scheduleListAll)
+                    });
+                    this.setState({ scheduleList: scheduleListAll });
                   }}
                 >
                   <Image src={item.avatar} alt="toto" avatar />
@@ -230,7 +253,10 @@ class Planning extends Component {
               ))}
             </Sidebar>
 
-            <Sidebar.Pusher dimmed={this.state.dimmed} style={{backgroundColor: "#442d6b"}}>
+            <Sidebar.Pusher
+              dimmed={this.state.dimmed}
+              style={{ backgroundColor: "#442d6b" }}
+            >
               {/* <Segment basic>
                 <Header as="h3">Application Content</Header>
                 <Image src="https://static-cdn.jtvnw.net/jtv_user_pictures/9b1e0ea9-6dd0-40c1-b255-3f3cea8d1814-profile_image-300x300.png" />
