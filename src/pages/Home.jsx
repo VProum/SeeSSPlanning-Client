@@ -38,14 +38,15 @@ class Home extends React.Component {
           </div>
           <div className="landing-btn">
             <a href="#showall">
-              Check more than {this.state.allStreamers.length * 464} streamers
+              {/* Check more than {this.state.allStreamers.length * 464} streamers */}
+              Already {this.state.allStreamers.length} streamers registered 
             </a>
           </div>
         </section>
 
         <section className="poti-card">
           <h2>Improve your Twitch <br/>Experience</h2>
-          <span>The best way to keep in touch with your streamer friend</span>
+          <span>Organise your day as a moderator so you can know who is broadcasting</span>
           <div className="toto-card">
             <div>
               <Link to="/planning">

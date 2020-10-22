@@ -284,7 +284,7 @@ class EditSchedule extends React.Component {
             style={{ marginTop: "1%"}}
             type="submit"
           >
-            Save
+            Add Timeslot
           </Button>
           </div>
 
