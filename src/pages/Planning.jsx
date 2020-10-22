@@ -22,7 +22,11 @@ const useStyles = (theme) => ({
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(0.5),
+      "& .MuiChip-deleteIcon"  :{
+        backgroundColor: "primary",
+      }
     },
+    
   },
 });
 
