@@ -45,7 +45,7 @@ class EditSchedule extends Component {
     if (!user) return <CircularProgress />;
     return (
       <div >
-        <h1 style={{marginLeft: "2%"}}>Schedule your stream</h1>
+        <h1 style={{marginLeft: "2%", display: "flex", justifyContent: "center"}}>Schedule your stream</h1>
         <div className="edit-schedule-container" >
           <FormEditSchedule addSchedule={this.handleAdd} />
           {/* schedule_list={this.state.schedule_list} /> */}

@@ -30,6 +30,8 @@ const useStyles = (theme) => ({
     "& .MuiFormControl-root": {
       width: "75%",
     },
+
+
   },
 
   paper: {
@@ -221,11 +223,12 @@ class EditSchedule extends React.Component {
             valueLabelDisplay="on"
             value={this.state.duration}
             onChange={this.valuetext}
+            style={{width: "90%"}}
           />
 
           <br />
           <FormControl className={classes.formControl}>
-            <InputLabel id="weekday">Weekdays</InputLabel>
+            <InputLabel id="weekday">Weekday</InputLabel>
             <Select
               labelId="weekday"
               id="weekday"
@@ -244,7 +247,7 @@ class EditSchedule extends React.Component {
             <br />
             <div>
 
-      <p style={{marginTop:"2%", marginBottom: "1%"}}> Upload your planning </p>
+      <p style={{marginTop:"2%", marginBottom: "1%"}}> Add your own weekly planning image  </p>
        <input
         accept="image/*"
         className={classes.input}
@@ -253,13 +256,16 @@ class EditSchedule extends React.Component {
         type="file"
         name="planning_image"
         onChange={this.handleImgChange}
+        style={{display: "none"}}
       />
       <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span" className={classes.button}
+        <Button variant="contained" color="default"  component="span" className={classes.button}
         startIcon={<CloudUploadIcon />}>
           Upload
         </Button>
-
+        {this.state.image && (
+          <span className="edit-schedule-image-span">Uploaded file: {this.state.image.name}</span>
+        )}
       </label>
             </div>
 
@@ -267,18 +273,20 @@ class EditSchedule extends React.Component {
 
           <br />
           {/* <FormInput name="lastName" value={this.state.lastName} onChange={this.handleTest}>lastName</FormInput> */}
+          <div className="edit-schedule-btn-save">
 
-          <Button
+           <Button
             variant="contained"
             color="primary"
             size="large"
             className={classes.button}
             startIcon={<SaveIcon />}
-            style={{ marginTop: "5%" }}
+            style={{ marginTop: "1%"}}
             type="submit"
           >
             Save
           </Button>
+          </div>
 
           {/* <Field name="lastName" value={this.state.lastName}>LastName</Field> */}
         </form>

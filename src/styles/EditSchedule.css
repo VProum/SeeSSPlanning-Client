@@ -7,3 +7,15 @@
    background-color: #442d6b;
    margin-top: 5%;
 }
+
+
+.edit-schedule-image-span {
+   margin-left: 1%;
+   font-size: 1em;
+
+}
+
+.edit-schedule-btn-save {
+   display: flex;
+   justify-content: center;
+}

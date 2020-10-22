@@ -138,7 +138,7 @@ class Planning extends Component {
     const { user } = this.props.context;
     return (
       <Grid columns={1}>
-        <Grid.Column style={{display: "flex"}}>
+        <Grid.Column style={{display: "flex", backgroundColor: "#8877a6"}}>
           <Checkbox
             toggle
             checked={this.state.visible}
@@ -168,7 +168,7 @@ class Planning extends Component {
           ))}
         </Grid.Column>
 
-        <Grid.Column>
+        <Grid.Column style={{padding: "0px"}}>
           <Sidebar.Pushable as={Segment} style={{height: "100vh"}}>
             <Sidebar
               as={Menu}
@@ -182,7 +182,7 @@ class Planning extends Component {
               }}
               vertical
               visible={this.state.visible}
-              width="thin"
+              width=""
             >
               {this.state.followingStreamers.map((item, i) => (
                 <Menu.Item

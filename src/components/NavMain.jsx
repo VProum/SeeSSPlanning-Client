@@ -88,9 +88,6 @@ const NavMain = (props) => {
                 <span style={{ marginRight: "3%" }}>{user[0].nickname}</span>
               )}
             </NavLink>
-            <NavLink exact to="/user/edit">
-              Contact
-            </NavLink>
           </Typography>
 
           {!user && (

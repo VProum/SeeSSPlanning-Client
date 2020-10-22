@@ -117,11 +117,13 @@ class FormDisplaySchedule extends React.Component {
     return (
       <div
       style={{
-        backgroundColor: "#17111e",
+        backgroundColor: "#442d6b",
         color: "whitesmoke",
+        display: "flex",
+        justifyContent: "center",
       }}
       >
-        <h1 style={{marginLeft: "2%"}}>Planning week</h1>
+        {/* <h1 style={{marginLeft: "2%"}}>Planning week</h1> */}
         <ul className="form-display-card" >
           {Object.entries(scheduleObj).map(([weekDay, scheduleList], index) => (
             <li key={index} className="form-display-schedule-line-row">
