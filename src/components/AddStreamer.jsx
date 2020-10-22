@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import FilterBar from "../components/FilterBar";
-
 //import { makeStyles } from "@material-ui/core/styles";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
 import apiHandler from "../api/apiHandler";
+import StreamerDetail from "../components/StreamerDetail";
+import StreamerList from "../components/StreamerList";
 
 import {
-  Checkbox,
   Grid,
-  Header,
   Image,
   Menu,
   Segment,
@@ -58,12 +54,15 @@ export default class AddStreamer extends Component {
     }
   }
 
+
+
   render() {
     const classes = this.props;
     return (
       <div className={classes.root}>
         <Grid columns={1}>
           <Grid.Column>
+          <Sidebar.Pushable as={Segment}>
             <Sidebar
               as={Menu}
               animation="push"
@@ -83,6 +82,15 @@ export default class AddStreamer extends Component {
                 </Menu.Item>
               ))}
             </Sidebar>
+            <Sidebar.Pusher dimmed={this.state.dimmed} style={{backgroundColor: "#442d6b" }}>
+            <StreamerDetail />
+            <StreamerList
+            userList={this.props.userList}
+            removeStreamer={this.props.removeFollow}
+            isDelete
+          />
+            </Sidebar.Pusher>
+            </Sidebar.Pushable>
           </Grid.Column>
         </Grid>
       </div>

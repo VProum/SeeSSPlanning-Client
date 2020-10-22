@@ -6,9 +6,4 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-template-rows: 33% 250px auto;
     justify-content: center;
-    background-image: url("https://i.pinimg.com/originals/75/5c/57/755c576d50d64770a04e703402eddfc3.jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }

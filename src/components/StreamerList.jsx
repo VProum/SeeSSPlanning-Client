@@ -1,10 +1,8 @@
 import React from "react";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
 import Button from "@material-ui/core/Button";
-import Icone from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, Icon, Image } from "semantic-ui-react";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -24,7 +22,7 @@ const StreamerList = (props) => {
   }
 
   const divStyle = {
-    marginLeft: props.isDelete? "10vw": "0",
+    marginLeft:  "15px",
     width: props.isDelete? "90vw":"100vw",
     height: "98vh"
   };
@@ -47,7 +45,7 @@ const StreamerList = (props) => {
             <Button
             color="primary"
             className={classes.button}
-            startIcon={<Icone className="fa fa-plus-circle" color="primary" />}
+            startIcon={<DeleteIcon />}
             onClick={deleteHandler}
             id={i}
             >remove

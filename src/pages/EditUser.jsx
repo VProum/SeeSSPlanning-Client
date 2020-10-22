@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import AddStreamer from "../components/AddStreamer";
-import StreamerList from "../components/StreamerList";
+
 import apiHandler from "../api/apiHandler";
-import StreamerDetail from "../components/StreamerDetail";
 
 
 export default class EditUser extends Component {
@@ -58,20 +57,20 @@ export default class EditUser extends Component {
   render() {
     //console.log("edit user state",this.state)
     return (
-      <div className="horizontal">
+    <>
         <AddStreamer
           addStreamer={this.addFollow}
           userList={this.state.streamer_follow}
+          removeFollow={this.removeFollow}
         />
-        <div>
-          <StreamerDetail />
-          <StreamerList
+ 
+          {/* <StreamerList
             userList={this.state.streamer_follow}
             removeStreamer={this.removeFollow}
             isDelete
-          />
-        </div>
-      </div>
+          /> */}
+          
+        </>
     );
   }
 }
