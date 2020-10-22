@@ -22,7 +22,11 @@ const useStyles = (theme) => ({
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(0.5),
+      "& .MuiChip-deleteIcon"  :{
+        backgroundColor: "primary",
+      }
     },
+    
   },
 });
 
@@ -159,6 +163,7 @@ class Planning extends Component {
                     label={item.nickname}
                     onDelete={this.handleDelete}
                     id={i}
+                  
                   />
                   <input
                     type="color"
