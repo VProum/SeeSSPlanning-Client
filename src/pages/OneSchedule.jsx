@@ -2,10 +2,8 @@ import React from "react";
 import { withUser } from "../components/Auth/withUser";
 import UserContext from "../components/Auth/UserContext";
 import apiHandler from "../api/apiHandler";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { Link } from "react-router-dom";
 import "../styles/OnSchedule.css";
-import StreamerList from "../components/StreamerList";
-import { makeStyles } from "@material-ui/core/styles";
 import { Card, Icon, Image } from "semantic-ui-react";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -38,7 +36,9 @@ class OneSchedule extends React.Component {
         <h1 style={{textAlign: "center", color:"whitesmoke", marginBottom: "2%"}}>{this.state.streamerFiltered.nickname}'s schedule </h1>
         <div className="one-schedule-main-container">
           <div className="one-schedule-user-card">
+             <Link to={{ pathname: `https://www.twitch.tv/${this.state.streamerFiltered.nickname}` }} target="_blank" >
             <Card color="teal" style={{ height: "250px", width: "175px" }}>
+            
               <Image
                 src={this.state.streamerFiltered.avatar}
                 wrapped
@@ -53,15 +53,15 @@ class OneSchedule extends React.Component {
                   {this.state.streamerFiltered.streamer_type}
                 </Card.Meta>
                 <Icon name="users" />
-                {this.state.streamerFiltered.nb_followers} followers
-                twitch.tv/nickname
+                {this.state.streamerFiltered.nb_followers}
               </Card.Content>
             </Card>
+             </Link>
           </div>
 
           <div className="one-schedule-wall-card">
             {this.state.streamerFiltered && (
-              <div>
+              <div className="one-schedule-img-container">
                 <img
                   src={this.state.streamerFiltered.planning_image}
                   alt={this.state.streamerFiltered.nickname}

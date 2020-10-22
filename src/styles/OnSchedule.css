@@ -29,6 +29,9 @@
     margin-top: 4%;
 }
 
+.one-schedule-img-container{
+  width: 75%;
+}
 
 @keyframes roll-in-top {
     0% {
