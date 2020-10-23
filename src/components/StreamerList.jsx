@@ -29,11 +29,11 @@ const StreamerList = (props) => {
     <div className="streamer-list" style={divStyle}>
       {props.userList.map((item, i) => (
         <Card key={i} color="teal">
-          <Link to={`/user/planning/${item.twitch_id}`}>
+          <Link to={`/planning/${item.twitch_id}`}>
             <Image src={item.avatar} wrapped ui={false} alt="blurry" />
               </Link>
             <Card.Content style={{ background: "#e6ddf0" }}>
-            <Link to={`/user/planning/${item.twitch_id}`}>
+            <Link to={`/planning/${item.twitch_id}`}>
               <Card.Header>{item.nickname}</Card.Header>
               <Card.Meta>{item.streamer_type}</Card.Meta>
               <Icon name="users" />

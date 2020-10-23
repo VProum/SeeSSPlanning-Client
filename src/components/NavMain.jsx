@@ -61,7 +61,7 @@ const NavMain = (props) => {
   return (
     <div className={classes.root}>
       {/* <MuiThemeProvider theme={darkTheme}> */}
-      <AppBar position="sticky" style={{ backgroundColor: "#251a36"}}>
+      <AppBar style={{ backgroundColor: "#251a36", position: "sticky"}} > 
         <Toolbar>
           <IconButton
             edge="start"

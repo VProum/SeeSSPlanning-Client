@@ -80,7 +80,7 @@ class App extends React.Component {
           <ProtectedRoute exact path="/profile" component={Profile} />
           <Route exact path="/planning" component={Planning} />
           <Route exact path="/user/edit" component={EditUser} />
-          <Route path="/user/planning/:id" component={OneSchedule} />
+          <Route path="/planning/:id" component={OneSchedule} />
           <Route path="/schedule/edit" component={EditSchedule} />
         </Switch>
       </div>

@@ -139,7 +139,7 @@ class FormDisplaySchedule extends React.Component {
                         width: "150px",
                       }}
                     >
-                      <Link to={`/user/planning/${schedule.streamer_id}`}>
+                      <Link to={`/planning/${schedule.streamer_id}`}>
                         <Card.Content className="form-display-schedule-content">
                           <Image
                             floated="right"
