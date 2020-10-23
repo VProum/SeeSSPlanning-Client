@@ -17,7 +17,6 @@ import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import apiHandler from "../../api/apiHandler";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import Icon from '@material-ui/core/Icon';
 
 
 const useStyles = (theme) => ({
@@ -68,6 +67,7 @@ class EditSchedule extends React.Component {
     this.setState({
       lastname: e.target.value,
     });
+    return e;
   };
 
   handleDateChange = (date) => {
@@ -94,9 +94,9 @@ class EditSchedule extends React.Component {
     }
 
     if(this.props.context.user[0].planning_image){
-      console.log(this.props.context.user[0].planning_image, "<<<<<<<<<<<<");
+      //console.log(this.props.context.user[0].planning_image, "<<<<<<<<<<<<");
     } else {
-      console.log("no picture?")
+     // console.log("no picture?")
     }
 
     const fd = new FormData();
@@ -186,7 +186,7 @@ class EditSchedule extends React.Component {
       },
     ];
 
-    const {user} = this.props.context;
+    //const {user} = this.props.context;
 
     
     return (

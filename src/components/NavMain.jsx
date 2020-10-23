@@ -60,7 +60,6 @@ const NavMain = (props) => {
 
   return (
     <div className={classes.root}>
-      {console.log(user)}
       {/* <MuiThemeProvider theme={darkTheme}> */}
       <AppBar position="sticky" style={{ backgroundColor: "#251a36"}}>
         <Toolbar>

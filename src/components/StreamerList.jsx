@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
 
 const StreamerList = (props) => {
   const classes = useStyles();
-  function addStreamerHandler(event) {
-    console.log(event.currentTarget);
-  }
 
   function deleteHandler(event) {
     //console.log("delete", event.currentTarget.id);

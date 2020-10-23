@@ -1,9 +1,8 @@
 import React from "react";
-import Hooks from "../components/Hooks";
 import apiHandler from "../api/apiHandler";
 import StreamerList from "../components/StreamerList";
 import "./../styles/home.css";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 class Home extends React.Component {
@@ -26,17 +25,19 @@ class Home extends React.Component {
           <h1>
             <span className="text-focus-in">
               Made by G@m3rz
+              </span>
               <br />
-              for Streamers
+              <span className="text-focus-in-delay">
+              for Str3amerz
             </span>
           </h1>
           <div className="sub-title">
-            <p>
+            <p className="tracking-in-expand">
               See Simple Streamer Planning :
               <br /> Monitor all your favourite streamer plannings in one page
             </p>
           </div>
-          <div className="landing-btn">
+          <div className="landing-btn scale-in-center">
             <a href="#showall">
               {/* Check more than {this.state.allStreamers.length * 464} streamers */}
               Already {this.state.allStreamers.length} streamers registered 

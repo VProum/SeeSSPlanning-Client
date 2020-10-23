@@ -7,7 +7,6 @@ import FormDisplaySchedule from "../components/Forms/FormDisplaySchedule";
 import { withUser } from "../components/Auth/withUser";
 import { Link } from "react-router-dom";
 import {
-  Checkbox,
   Grid,
   Icon,
   Image,
@@ -59,7 +58,6 @@ class Planning extends Component {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
     this.changeColor = this.changeColor.bind(this);
-    let changingColor = null;
   }
 
   state = {

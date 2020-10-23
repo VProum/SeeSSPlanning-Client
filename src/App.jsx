@@ -39,7 +39,7 @@ class App extends React.Component {
   };
 
   handleKey(event) {
-    console.log(event.keyCode);
+    //console.log(event.keyCode);
     let donotmutate = [...this.state.input];
 
     if (this.state.input.length >= 10) {
@@ -67,9 +67,9 @@ class App extends React.Component {
       this.setState({
         konamicode: false
       });
-      window.open("https://www.google.com", "_blank")
+      window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
     }
-    console.log("this is V1.0");
+    //console.log("this is V1.0");
     return (
       <div className="App">
         <NavMain />
