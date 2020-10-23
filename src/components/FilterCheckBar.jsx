@@ -60,7 +60,7 @@ const FilterCheckBar = (props) => {
                 key={i}
                 index={i}
                 onClick={(e, data) => {
-                  console.log(e.currentTarget, data);
+                  // console.log(e.currentTarget, data);
                   settest(data.index);
                 }}
               >

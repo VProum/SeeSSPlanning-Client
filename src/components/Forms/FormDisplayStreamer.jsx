@@ -29,7 +29,6 @@ class FormDisplayStreamer extends Component {
   };
 
   handleSearch = (value) => {
-    console.log(value)
     this.setState({
       streamerFiltered: value,
     });
@@ -42,7 +41,7 @@ class FormDisplayStreamer extends Component {
     
     if(this.state.streamerFiltered.length > 0){
    //   console.log(this.state.streamerFiltered, "<<< not empty streamer")
-    console.log(this.state, " state in formdisplayStreamer");
+  
     }
     return (
       <div

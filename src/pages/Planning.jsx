@@ -119,7 +119,7 @@ class Planning extends Component {
   }
 
   handleNothing = () => {
-    console.log("pouet");
+    // console.log("pouet");
   };
 
   changeColor(event, index) {
@@ -138,11 +138,11 @@ class Planning extends Component {
       donotmutate.map((streamer, i) => {
         if (streamer.planningList.length > 0) {
           streamer.planningList.map((planningitem, j) => {
-            console.log(
-              donotmutate[index].nickname,
-              planningitem.streamer_name[0],
-              donotmutate[index].nickname === planningitem.streamer_name[0]
-            );
+            // console.log(
+            //   donotmutate[index].nickname,
+            //   planningitem.streamer_name[0],
+            //   donotmutate[index].nickname === planningitem.streamer_name[0]
+            // );
             if (donotmutate[index].nickname === planningitem.streamer_name[0]) {
               planningitem.colorBackground = colorValue;
             }
